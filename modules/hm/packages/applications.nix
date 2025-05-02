@@ -7,7 +7,7 @@ in
     # ------------------------------- // Applications
         firefox
         bottles
-        inputs.zen-browser.packages."${system}".default
+        # inputs.zen-browser.packages."${system}".default
         brave
         chromium
         google-chrome
