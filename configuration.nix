@@ -16,7 +16,7 @@ let
     # Include your own package set to be used eg. pkgs.userPkgs.bash
     userPkgs = inputs.nixpkgs {
       config.allowUnfree = true;
-    }
+    };
   };
 in
 {
