@@ -92,7 +92,7 @@
         "Rose Pine"
         "Red Stone"
         "Vanta Black"
-        "Cosmic Blue"
+        #"Cosmic Blue"
         "Scarlet Night"
         "Ever Blushing"
         "Another World"
