@@ -82,7 +82,7 @@ in
     enable = true; # Enable the Hydenix module
 
     #! EDIT THESE VALUES
-    hostname = "juanma-asus-nixos"; # Change to your preferred hostname
+    hostname = "Lenovo-ThinkpPad-L15"; # Change to your preferred hostname
     timezone = "America/Mexico_City"; # Change to your timezone
     locale = "en_US.UTF-8"; # Change to your preferred locale
 

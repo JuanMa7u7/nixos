@@ -25,7 +25,7 @@
   outputs =
     { ... }@inputs:
     let
-      HOSTNAME = "juanma-asus-nixos";
+      HOSTNAME = "Lenovo-ThinkpPad-L15";
 
       hydenixConfig = inputs.hydenix.inputs.hydenix-nixpkgs.lib.nixosSystem {
         inherit (inputs.hydenix.lib) system;
