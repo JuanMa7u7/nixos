@@ -46,10 +46,10 @@ in
 
     # === CPU-specific configurations ===
     # For AMD CPUs
-    # inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
 
     # For Intel CPUs
-    inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-intel
+    # inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     # === Other common modules ===
     inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
