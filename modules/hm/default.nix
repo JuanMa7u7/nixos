@@ -101,7 +101,7 @@
         "Graphite Mono"
         "Gruvbox Retro"
         "Monokai"
-        "Moonlight"
+        #"Moonlight"
         "Tokyo Night"
         "Sci fi"
         "Solarized Dark"
