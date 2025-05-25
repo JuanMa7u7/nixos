@@ -23,5 +23,7 @@ in
         whatsapp-for-linux
         telegram-desktop
         neofetch
+        ipfetch
+        cmatrix
     ];
 }
