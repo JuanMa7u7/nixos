@@ -86,7 +86,7 @@
     };
     theme = {
       enable = true; # enable theme module
-      active = "Catppuccin Mocha"; # active theme
+      active = "Bad Blood"; # active theme
       themes = [
         "Catppuccin Mocha"
         "Rose Pine"
