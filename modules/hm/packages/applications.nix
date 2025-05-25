@@ -26,5 +26,6 @@ in
         ipfetch
         cmatrix
         nyancat
+        waypaper
     ];
 }
