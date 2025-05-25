@@ -40,8 +40,8 @@
     };
     git = {
       enable = true; # enable git module
-      name = "razkaroth"; # git user name eg "John Doe"
-      email = "rocker.ikaros@gmail.com"; # git user email eg "john.doe@example.com"
+      name = "JuanMa7u7"; # git user name eg "John Doe"
+      email = "jmlafuente97@gmail.com"; # git user email eg "john.doe@example.com"
     };
     hyde.enable = true; # enable hyde module
     hyprland.enable = true; # enable hyprland module
@@ -67,7 +67,7 @@
       #  configText = ""; # zsh config text
       bash.enable = false; # enable bash shell
       fish.enable = false; # enable fish shell
-      pokego.enable = true; # enable Pokemon ASCII art scripts
+      pokego.enable = false; # enable Pokemon ASCII art scripts
     };
     # social = {
     #   enable = true; # enable social module
