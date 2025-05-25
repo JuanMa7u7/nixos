@@ -76,7 +76,7 @@
     #   vesktop.enable = true; # enable vesktop module
     # };
     spotify.enable = true; # enable spotify module
-    swww.enable = true; # enable swww wallpaper daemon
+    swww.enable = false; # enable swww wallpaper daemon
     terminals = {
       enable = true; # enable terminals module
       kitty.enable = true; # enable kitty terminal
