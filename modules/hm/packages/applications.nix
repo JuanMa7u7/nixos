@@ -22,5 +22,6 @@ in
         libsForQt5.networkmanager-qt
         whatsapp-for-linux
         telegram-desktop
+        neofetch
     ];
 }
