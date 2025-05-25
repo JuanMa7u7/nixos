@@ -1,0 +1,1 @@
+sudo nixos-rebuild switch --flake ./Lenovo-ThinkPad-L15
