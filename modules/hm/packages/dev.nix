@@ -18,5 +18,6 @@
         
         #langs
         nodejs
+        pnpm_9
     ];
 }
