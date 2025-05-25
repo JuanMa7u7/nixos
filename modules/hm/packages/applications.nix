@@ -25,5 +25,6 @@ in
         neofetch
         ipfetch
         cmatrix
+        nyancat
     ];
 }
