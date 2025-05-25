@@ -85,7 +85,7 @@
         ''; # kitty config text
     };
     theme = {
-      enable = true; # enable theme module
+      enable = false; # enable theme module
       active = "Bad Blood"; # active theme
       themes = [
         "Catppuccin Mocha"
