@@ -11,6 +11,7 @@
         #Tools
         github-cli
         code-cursor
+        vscode
         
         #DB
         mongodb-compass
