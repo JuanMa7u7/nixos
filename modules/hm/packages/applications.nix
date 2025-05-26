@@ -28,5 +28,6 @@ in
         nyancat
         swww
         waypaper
+        x11vnc
     ];
 }
