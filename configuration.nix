@@ -20,6 +20,11 @@ let
   };
 in
 {
+  # Firewall
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [80 443 3000]
+  };
 
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
