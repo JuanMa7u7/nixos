@@ -57,7 +57,7 @@
         "custom/cliphist",
         "custom/power",
         "custom/r_end",
-        // "custom/padd"
+        "custom/padd"
     ],
     // sourced from modules based on config.ctl //
     "cpu": {
