@@ -53,8 +53,8 @@ in
         "guest ok" = "no";
         "create mask" = "0644";
         "directory mask" = "0755";
-        "force user" = "username";
-        "force group" = "groupname";
+        # "force user" = "username";
+        # "force group" = "groupname";
       };
     };
   };
