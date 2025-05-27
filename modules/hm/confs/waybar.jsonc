@@ -344,7 +344,7 @@
         "on-click-right": "themeswitch.sh -p",
         "on-click-middle": "sleep 0.1 && themeselect.sh",
         "interval": 86400, // once every day
-        "tooltip": true
+        "tooltip": false
     },
     "custom/wbar": {
         "format": "{}", //    //
