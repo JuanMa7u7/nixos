@@ -39,6 +39,8 @@ in
         "netbios name" = "smbnix";
         "security" = "user";
         "path" = "/home/juan_ma7u7";
+        "browseable" = "yes";
+        "read only" = "no";
         #"use sendfile" = "yes";
         #"max protocol" = "smb2";
         # note: localhost is the ipv6 localhost ::1
