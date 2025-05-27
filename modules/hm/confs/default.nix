@@ -7,7 +7,7 @@
       mutable = true;
     };
     # Waybar
-    ".config/waybar/waybar.jsonc" = pkgs.lib.mkForce {
+    ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
     source = ./waybar.jsonc;
       force = true;
       mutable = true;
