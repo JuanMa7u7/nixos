@@ -52,7 +52,7 @@
         "custom/r_end",
         "custom/l_end",
         "custom/wallchange",
-        "custom/theme",
+        // "custom/theme",
         "custom/wbar",
         "custom/cliphist",
         "custom/power",
@@ -336,16 +336,16 @@
             "󰁹"
         ]
     },
-    "custom/theme": {
-        "format": "{}",
-        "rotate": 0,
-        "exec": "echo ; echo 󰟡 switch theme",
-        "on-click": "themeswitch.sh -n",
-        "on-click-right": "themeswitch.sh -p",
-        "on-click-middle": "sleep 0.1 && themeselect.sh",
-        "interval": 86400, // once every day
-        "tooltip": false
-    },
+    // "custom/theme": {
+    //     "format": "{}",
+    //     "rotate": 0,
+    //     "exec": "echo ; echo 󰟡 switch theme",
+    //     "on-click": "themeswitch.sh -n",
+    //     "on-click-right": "themeswitch.sh -p",
+    //     "on-click-middle": "sleep 0.1 && themeselect.sh",
+    //     "interval": 86400, // once every day
+    //     "tooltip": true
+    // },
     "custom/wbar": {
         "format": "{}", //    //
         "rotate": 0,
