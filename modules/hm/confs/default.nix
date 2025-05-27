@@ -7,11 +7,11 @@
       mutable = true;
     };
     # Waybar
-    ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
-    source = ./waybar.jsonc;
-      force = true;
-      mutable = true;
-    };
+    # ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
+    # source = ./waybar.jsonc;
+    #   force = true;
+    #   mutable = true;
+    # };
     # HyDE
     ".config/hyde/config.toml" = pkgs.lib.mkForce {
     source = ./hyde.toml;
