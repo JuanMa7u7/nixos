@@ -75,7 +75,7 @@
     #   # webcord.enable = true; # enable webcord module
     #   vesktop.enable = true; # enable vesktop module
     # };
-    spotify.enable = true; # enable spotify module
+    spotify.enable = false; # enable spotify module
     swww.enable = false; # enable swww wallpaper daemon
     terminals = {
       enable = true; # enable terminals module
@@ -86,25 +86,25 @@
     };
     theme = {
       enable = true; # enable theme module
-      active = "Bad Blood"; # active theme
+      active = "Scarlet Night"; # active theme
       themes = [
-        "Catppuccin Mocha"
-        "Rose Pine"
-        "Red Stone"
-        "Vanta Black"
-        #"Cosmic Blue"
+        # "Catppuccin Mocha"
+        # "Rose Pine"
+        # "Red Stone"
+        # "Vanta Black"
+        # "Cosmic Blue"
         "Scarlet Night"
-        "Ever Blushing"
-        "Another World"
-        "Bad Blood"
-        "Cat Latte"
-        "Graphite Mono"
-        "Gruvbox Retro"
-        "Monokai"
-        #"Moonlight"
-        "Tokyo Night"
-        "Sci fi"
-        "Solarized Dark"
+        # "Ever Blushing"
+        # "Another World"
+        # "Bad Blood"
+        # "Cat Latte"
+        # "Graphite Mono"
+        # "Gruvbox Retro"
+        # "Monokai"
+        # "Moonlight"
+        # "Tokyo Night"
+        # "Sci fi"
+        # "Solarized Dark"
       ]; # default enabled themes, full list in https://github.com/richen604/hydenix/tree/main/hydenix/sources/themes
     };
     waybar.enable = true; # enable waybar module

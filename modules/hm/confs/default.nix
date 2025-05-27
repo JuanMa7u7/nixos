@@ -12,6 +12,12 @@
       force = true;
       mutable = true;
     };
+    # HyDE
+    ".config/hyde/config.toml" = pkgs.lib.mkForce {
+    source = ./hyde.toml;
+      force = true;
+      mutable = true;
+    };
   };
 
   home.activation = {
