@@ -107,7 +107,7 @@
         # "Solarized Dark"
       ]; # default enabled themes, full list in https://github.com/richen604/hydenix/tree/main/hydenix/sources/themes
     };
-    waybar.enable = false; # enable waybar module
+    waybar.enable = true; # enable waybar module
     wlogout.enable = true; # enable wlogout module
     xdg.enable = true; # enable xdg module
   };
