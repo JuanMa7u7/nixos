@@ -95,12 +95,11 @@ in
     # '';
   };
 
-    # Opcional: Para poder interactuar con PostgreSQL desde la línea de comandos
-    # con herramientas como `psql`, puedes agregarlas a tus paquetes de sistema.
-    # environment.systemPackages = with pkgs; [
-    #     postgresql
-    # ];
-  }
+  # Opcional: Para poder interactuar con PostgreSQL desde la línea de comandos
+  # con herramientas como `psql`, puedes agregarlas a tus paquetes de sistema.
+  # environment.systemPackages = with pkgs; [
+  #     postgresql
+  # ];
 
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
