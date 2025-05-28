@@ -100,7 +100,7 @@ in
     # environment.systemPackages = with pkgs; [
     #     postgresql
     # ];
-  };
+  }
 
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
