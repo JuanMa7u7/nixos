@@ -74,18 +74,44 @@ in
     # package = pkgs.postgresql_16; 
 
     # Nombres de las bases de datos que quieres que se creen automáticamente al iniciar el servicio.
-    ensureDatabases = [ "mydatabase" ]; 
+    ensureDatabases = [ "mydatabase" ];
 
+    # También puedes asegurar que el usuario exista y tenga una contraseña.
+    # Esto creará un usuario PostgreSQL si no existe.
+    # Ten en cuenta que la contraseña se guardará en texto plano en la configuración de NixOS.
+    # Para producción, considera usar un método más seguro para gestionar credenciales.
+    ensureUsers = [{
+      name = "juan_ma7u7";
+      password = "Om3g4117z3r0!@#"; # ¡CAMBIA ESTO POR UNA CONTRASEÑA REAL!
+    }];
     # Configuración de autenticación (pg_hba.conf).
     # Esta es una configuración muy básica que permite el acceso local a todas las bases de datos
     # para todos los usuarios sin contraseña (método 'trust'). 
     # ¡ADVERTENCIA! Para producción, DEBES configurar una autenticación más segura.
     authentication = pkgs.lib.mkOverride 10 ''
-      local all all trust
+      # Regla para conexiones locales a través del socket de Unix (confiable para usuarios del sistema)
+      local   all             all                                     trust
+
+      # Regla para conexiones TCP/IP desde localhost (127.0.0.1)
+      # Esto permite que el usuario 'juan_ma7u7' se conecte a cualquier base de datos (o una específica)
+      # desde localhost, usando el método 'scram-sha-256' (más seguro que 'md5' o 'trust').
+      # Si quieres usar 'password' o 'md5' para compatibilidad o simplicidad, puedes cambiarlo.
+      # ¡IMPORTANTE! 'scram-sha-256' requiere que la contraseña del usuario se haya establecido con 'scram-sha-256'.
+      # Si creas el usuario con 'CREATE USER ... WITH PASSWORD ...', PostgreSQL usará el método por defecto.
+      # Para 'scram-sha-256', podrías necesitar: ALTER USER juan_ma7u7 PASSWORD 'tu_contraseña_segura';
+      host    all             juan_ma7u7      127.0.0.1/32            scram-sha-256
+
+      # Si prefieres una regla más general (y menos segura para producción), puedes usar:
+      # host    all             all             127.0.0.1/32            md5
+      # Esto permite que CUALQUIER usuario se conecte desde localhost usando md5.
+      # O, para un desarrollo muy rápido pero inseguro:
+      # host    all             all             127.0.0.1/32            trust
+      # Esto permite a CUALQUIER usuario conectarse desde localhost sin contraseña.
+      # ¡NO USAR 'trust' en producción para conexiones TCP/IP!
     '';
 
     # Si quieres permitir conexiones TCP/IP (por defecto están deshabilitadas por seguridad).
-    # enableTCPIP = true;
+    enableTCPIP = true;
     port = 5432; # Puerto por defecto de PostgreSQL
 
     # Puedes agregar configuración adicional de PostgreSQL aquí (postgresql.conf)
