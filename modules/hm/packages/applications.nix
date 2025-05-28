@@ -29,6 +29,5 @@ in
         swww
         waypaper
         x11vnc
-        waybar
     ];
 }
