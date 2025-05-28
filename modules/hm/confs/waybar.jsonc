@@ -51,9 +51,9 @@
         "battery",
         "custom/r_end",
         "custom/l_end",
-        "custom/wallchange",
+        // "custom/wallchange",
         // "custom/theme",
-        "custom/wbar",
+        // "custom/wbar",
         "custom/cliphist",
         "custom/power",
         "custom/r_end",
@@ -185,11 +185,11 @@
         "persistent-workspaces": {}
     },
     "hyprland/window": {
-        "format": "  {}",
+        "format": " 󱄅 {}",
         "rotate": 0,
         "separate-outputs": true,
         "rewrite": {
-            "juan_ma7u7@Lenovo-ThinkpPad-L15:(.*)": " ",
+            // "juan_ma7u7@Lenovo-ThinkpPad-L15:(.*)": " ",
             "(.*) — Mozilla Firefox": " 󰈹",
             "(.*)Mozilla Firefox": "Firefox 󰈹",
             "(.*) - Visual Studio Code": " 󰨞",
