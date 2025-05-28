@@ -16,7 +16,7 @@
         #DB
         mongodb-compass
         mongodb-tools
-        postgresql_11
+        postgresql_16
         
         #langs
         nodejs
