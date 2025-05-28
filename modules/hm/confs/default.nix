@@ -1,5 +1,4 @@
 { pkgs, ...}:{
-  config.hydenix.hm.waybar.enable = false;
   home.file = {
     # Hyprland
     ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
