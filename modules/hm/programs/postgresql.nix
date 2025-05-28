@@ -1,7 +1,10 @@
 {  ... }: {
-    programs.postgresql = {
-        enable = true;
-        package = pkgs.postgresql_11;
-        dataDir = "/data/postgresql";
-    };
+    services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "db" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
 }
