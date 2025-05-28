@@ -76,6 +76,13 @@ in
     # Nombres de las bases de datos que quieres que se creen automáticamente al iniciar el servicio.
     ensureDatabases = [ "mydatabase" ];
 
+    # También puedes asegurar que el usuario exista y tenga una contraseña.
+    # Esto creará un usuario PostgreSQL si no existe.
+    # Ten en cuenta que la contraseña se guardará en texto plano en la configuración de NixOS.
+    # Para producción, considera usar un método más seguro para gestionar credenciales.
+    ensureUsers = [{
+      name = "juan_ma7u7";
+    }];
     # Configuración de autenticación (pg_hba.conf).
     # Esta es una configuración muy básica que permite el acceso local a todas las bases de datos
     # para todos los usuarios sin contraseña (método 'trust'). 
