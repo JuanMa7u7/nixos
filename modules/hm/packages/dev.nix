@@ -16,6 +16,7 @@
         #DB
         mongodb-compass
         mongodb-tools
+        dbeaver-bin
         
         #langs
         nodejs
