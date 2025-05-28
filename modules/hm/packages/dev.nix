@@ -10,12 +10,13 @@
         
         #Tools
         github-cli
-        code-cursor
+        # code-cursor
         vscode
         
         #DB
         mongodb-compass
         mongodb-tools
+        postgresql
         
         #langs
         nodejs
