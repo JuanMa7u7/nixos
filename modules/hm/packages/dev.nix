@@ -16,7 +16,6 @@
         #DB
         mongodb-compass
         mongodb-tools
-        postgresql
         
         #langs
         nodejs
