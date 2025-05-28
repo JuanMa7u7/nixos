@@ -29,7 +29,7 @@
 
   # Opcional: Para poder interactuar con PostgreSQL desde la línea de comandos
   # con herramientas como `psql`, puedes agregarlas a tus paquetes de sistema.
-  environment.systemPackages = with pkgs; [
-    postgresql
-  ];
+  # environment.systemPackages = with pkgs; [
+  #     postgresql
+  # ];
 }
