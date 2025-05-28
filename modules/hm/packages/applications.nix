@@ -29,5 +29,6 @@ in
         swww
         waypaper
         x11vnc
+        snappymail
     ];
 }
