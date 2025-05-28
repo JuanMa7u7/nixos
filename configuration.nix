@@ -64,13 +64,6 @@ in
     openFirewall = true;
   };
 
-  # PostgreSQL
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_16;
-    dataDir = "/data/postgresql";
-  };
-
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
 
