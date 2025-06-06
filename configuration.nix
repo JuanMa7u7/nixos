@@ -25,7 +25,7 @@ in
   # Firewall
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [80 443 445 3000];
+    allowedTCPPorts = [80 443 445 3000 5555];
     allowPing = true;
   };
 
