@@ -19,7 +19,6 @@
         dbeaver-bin
         
         #langs
-        nodejs
         pnpm_9
     ];
 }
