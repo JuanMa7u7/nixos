@@ -22,14 +22,14 @@
     };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    # nixarr.url = "github:rasmus-kirk/nixarr";
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixarr.url = "github:rasmus-kirk/nixarr";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs =
     {
-      # nixos-hardware,
-      # nixarr,
+      nixos-hardware,
+      nixarr,
       zen-browser, 
       ... 
     }@inputs:
