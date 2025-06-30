@@ -88,23 +88,23 @@
       enable = true; # enable theme module
       active = "Scarlet Night"; # active theme
       themes = [
-        # "Catppuccin Mocha"
-        # "Rose Pine"
-        # "Red Stone"
-        # "Vanta Black"
+        "Catppuccin Mocha"
+        "Rose Pine"
+        "Red Stone"
+        "Vanta Black"
         # "Cosmic Blue"
         "Scarlet Night"
-        # "Ever Blushing"
-        # "Another World"
-        # "Bad Blood"
-        # "Cat Latte"
-        # "Graphite Mono"
-        # "Gruvbox Retro"
-        # "Monokai"
+        "Ever Blushing"
+        "Another World"
+        "Bad Blood"
+        "Cat Latte"
+        "Graphite Mono"
+        "Gruvbox Retro"
+        "Monokai"
         # "Moonlight"
-        # "Tokyo Night"
-        # "Sci fi"
-        # "Solarized Dark"
+        "Tokyo Night"
+        "Sci fi"
+        "Solarized Dark"
       ]; # default enabled themes, full list in https://github.com/richen604/hydenix/tree/main/hydenix/sources/themes
     };
     waybar.enable = true; # enable waybar module
