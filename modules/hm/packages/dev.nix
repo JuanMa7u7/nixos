@@ -19,10 +19,11 @@
         dbeaver-bin
         
         #langs
-        nodejs_20
+        nodejs_21
         pnpm_9
         openssl
-        prisma
-        vercel
+        nodePackages_latest.pnpm
+        nodePackages_latest.vercel
+        nodePackages_latest.prisma
     ];
 }
