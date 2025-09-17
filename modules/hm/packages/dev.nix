@@ -21,5 +21,6 @@
         #langs
         nodejs_20
         pnpm_9
+        openssl
     ];
 }
