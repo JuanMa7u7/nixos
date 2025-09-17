@@ -22,8 +22,7 @@
         nodejs_20
         pnpm_9
         openssl
-        nodePackages_latest.pnpm
         nodePackages_latest.vercel
-        nodePackages_latest.prisma
+        prisma
     ];
 }
