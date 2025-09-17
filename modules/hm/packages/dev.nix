@@ -19,7 +19,7 @@
         dbeaver-bin
         
         #langs
-        nodejs_21
+        nodejs_20
         pnpm_9
         openssl
         nodePackages_latest.pnpm
