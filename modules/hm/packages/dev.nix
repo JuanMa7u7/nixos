@@ -22,6 +22,7 @@
         nodejs_20
         pnpm_9
         openssl
-        prisma-engines
+        prisma
+        vercel
     ];
 }
