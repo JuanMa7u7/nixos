@@ -24,13 +24,15 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixarr.url = "github:rasmus-kirk/nixarr";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixpkgs-prisma-4.url = "github:NixOS/nixpkgs/29bcead8405cfe4c00085843eb372cc43837bb9d";
   };
 
   outputs =
     {
       nixos-hardware,
       nixarr,
-      zen-browser, 
+      zen-browser,
+      nixpkgs-prisma-4, 
       ... 
     }@inputs:
     let
