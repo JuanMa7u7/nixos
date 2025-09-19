@@ -15,8 +15,6 @@
       url = "github:richen604/hydenix";
     };
 
-    prisma-engines.url
-
     # Nix-index-database - for comma and command-not-found
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
