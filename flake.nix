@@ -3,7 +3,7 @@
 
   inputs = {
     # User's nixpkgs - for user packages
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/25.05";
     # Hydenix and its nixpkgs - kept separate to avoid conflicts
     hydenix = {
       # Available inputs:
