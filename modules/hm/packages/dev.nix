@@ -24,6 +24,7 @@
         openssl
         nodePackages_latest.vercel
         prisma
-        prisma-engines
+        # prisma-engines
+        inputs.prisma-engines.packages."${system}"."5.22.0"
     ];
 }
