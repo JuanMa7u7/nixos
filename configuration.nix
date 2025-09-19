@@ -125,6 +125,15 @@ in
   #     postgresql
   # ];
 
+  environment.sessionVariables = with pkgs; {
+    # PRISMA
+    PRISMA_FMT_BINARY = "${prisma-engines}/bin/prisma-fmt";
+    PRISMA_QUERY_ENGINE_BINARY = "${prisma-engines}/bin/query-engine";
+    PRISMA_QUERY_ENGINE_LIBRARY = "${prisma-engines}/lib/libquery_engine.node";
+    PRISMA_SCHEMA_ENGINE_BINARY = "${prisma-engines}/bin/schema-engine";
+    PRISMA_INTROSPECTION_ENGINE_BINARY = "${prisma-engines}/bin/introspection-engine";
+  };
+
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
 
