@@ -24,5 +24,14 @@
         openssl
         nodePackages_latest.vercel
         prisma
+        prisma-engines
     ];
+
+    environment.sessionVariables = with pkgs; {
+    PRISMA_FMT_BINARY = "${prisma-engines}/bin/prisma-fmt";
+    PRISMA_QUERY_ENGINE_BINARY = "${prisma-engines}/bin/query-engine";
+    PRISMA_QUERY_ENGINE_LIBRARY = "${prisma-engines}/lib/libquery_engine.node";
+    PRISMA_SCHEMA_ENGINE_BINARY = "${prisma-engines}/bin/schema-engine";
+    PRISMA_INTROSPECTION_ENGINE_BINARY = "${prisma-engines}/bin/introspection-engine";
+  };
 }
