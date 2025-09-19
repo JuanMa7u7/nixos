@@ -24,8 +24,6 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixarr.url = "github:rasmus-kirk/nixarr";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # PRISMA 5.22.0
-    prisma-engines.url = "github:NixOS/nixpkgs/566e53c2ad750c84f6d31f9ccb9d00f823165550";
   };
 
   outputs =
