@@ -23,7 +23,7 @@
         pnpm_9
         openssl
         nodePackages_latest.vercel
-        prisma
-        prisma-engines
+        # prisma
+        # prisma-engines
     ];
 }
