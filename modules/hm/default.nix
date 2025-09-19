@@ -36,7 +36,7 @@
       useHydeConfig = false; # use hyde firefox configuration and extensions
       useUserChrome = true; # if useHydeConfig is true, apply hyde userChrome CSS customizations
       useUserJs = true; # if useHydeConfig is true, apply hyde user.js preferences
-      useExtensions = true; # if useHydeConfig is true, install hyde firefox extensions
+      # useExtensions = true; # if useHydeConfig is true, install hyde firefox extensions
     };
     git = {
       enable = true; # enable git module
