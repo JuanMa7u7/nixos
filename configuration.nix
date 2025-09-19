@@ -126,7 +126,10 @@ in
   # ];
 
   # Prisma:
-  environment.variables.PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING = 1;
+  # environment.variables.PRISMA_ENGINES_CHECKSUM_IGNORE_MISSING = 1;
+  environment.variables.PRISMA_QUERY_ENGINE_LIBRARY="linux-musl-openssl-3.0.x";
+  environment.variables.PRISMA_QUERY_ENGINE_BINARY="linux-musl-openssl-3.0.x";
+  environment.variables.PRISMA_SCHEMA_ENGINE_BINARY="linux-musl-openssl-3.0.x";
 
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
