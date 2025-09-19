@@ -31,7 +31,6 @@
       nixos-hardware,
       nixarr,
       zen-browser,
-      prisma-engines, 
       ... 
     }@inputs:
     let
