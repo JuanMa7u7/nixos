@@ -25,5 +25,6 @@
         nodePackages_latest.vercel
         prisma
         prisma-engines
+        flutter
     ];
 }
