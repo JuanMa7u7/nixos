@@ -10,6 +10,7 @@
         
         #Tools
         github-cli
+        openia
         # code-cursor
         vscode
         
