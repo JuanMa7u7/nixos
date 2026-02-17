@@ -19,7 +19,9 @@ in
 
       #Tools
       github-cli
-      codex
+      opencode
+      td
+      tmux
       # code-cursor
       vscode
 
@@ -35,6 +37,7 @@ in
       nodePackages_latest.vercel
       prisma
       prisma-engines
+      go
       (lib.hiPrio flutter)
     ]) ++ pythonWithAmd;
 }
