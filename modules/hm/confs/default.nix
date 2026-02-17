@@ -18,6 +18,12 @@
       force = true;
       mutable = true;
     };
+    # Override HyDE's AMD helper to remove the pyamdgpuinfo dependency and use sysfs fallback
+    ".local/lib/hyde/amdgpu.py" = pkgs.lib.mkForce {
+      source = ./amdgpu.py;
+      force = true;
+      mutable = true;
+    };
   };
 
   home.activation = {
