@@ -184,7 +184,7 @@ in
         imports = [
           inputs.hydenix.lib.homeModules
           # Nix-index-database - for comma and command-not-found
-          inputs.nix-index-database.hmModules.nix-index
+          inputs.nix-index-database.homeModules.nix-index
           ./modules/hm
         ];
       };
@@ -195,7 +195,7 @@ in
     enable = true; # Enable the Hydenix module
 
     #! EDIT THESE VALUES
-    hostname = "Lenovo-ThinkpPad-L15"; # Change to your preferred hostname
+    hostname = "Lenovo-ThinkPad-L15"; # Change to your preferred hostname
     timezone = "America/Mexico_City"; # Change to your timezone
     locale = "en_US.UTF-8"; # Change to your preferred locale
 
