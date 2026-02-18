@@ -34,9 +34,10 @@
     }@inputs:
     let
       HOSTNAME = "Lenovo-ThinkPad-L15";
+      SYSTEM = "x86_64-linux";
 
-      hydenixConfig = inputs.hydenix.inputs.hydenix-nixpkgs.lib.nixosSystem {
-        inherit (inputs.hydenix.lib) system;
+      hydenixConfig = inputs.hydenix.inputs.nixpkgs.lib.nixosSystem {
+        system = SYSTEM;
         specialArgs = {
           inherit inputs;
         };

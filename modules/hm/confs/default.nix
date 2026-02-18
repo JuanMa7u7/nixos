@@ -1,4 +1,4 @@
-{ pkgs, ...}:{
+{ pkgs, lib, ... }:{
   home.file = {
     # Hyprland
     ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
@@ -27,7 +27,11 @@
   };
 
   home.activation = {
-
+    hyprlandDropDeprecatedGestures = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ -f "$HOME/.local/share/hypr/defaults.conf" ]; then
+        ${pkgs.gnused}/bin/sed -i '/^[[:space:]]*gesture[[:space:]]*=/d' "$HOME/.local/share/hypr/defaults.conf"
+      fi
+    '';
   };
 
   home.sessionVariables = {

@@ -21,11 +21,12 @@ in
       github-cli
       opencode
       tmux
+      gcc
+      libgcc
       # code-cursor
       vscode
 
       #DB
-      mongodb-compass
       mongodb-tools
       dbeaver-bin
 
@@ -36,7 +37,7 @@ in
       nodePackages_latest.vercel
       prisma
       prisma-engines
-      go
+      go_1_26
       (lib.hiPrio flutter)
     ]) ++ pythonWithAmd;
 }

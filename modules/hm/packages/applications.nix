@@ -19,8 +19,8 @@ in
         typora
         transmission_4-gtk
         onlyoffice-desktopeditors
-        libsForQt5.networkmanager-qt
-        whatsapp-for-linux
+        kdePackages.networkmanager-qt
+        wasistlos
         telegram-desktop
         neofetch
         ipfetch
