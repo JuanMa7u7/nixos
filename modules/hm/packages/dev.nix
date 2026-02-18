@@ -20,7 +20,6 @@ in
       #Tools
       github-cli
       opencode
-      td
       tmux
       # code-cursor
       vscode
