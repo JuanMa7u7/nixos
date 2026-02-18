@@ -1,16 +1,19 @@
 {
+  config,
+  pkgs,
   inputs,
   ...
 }:
 let
+  system = "x86_64-linux";
   # Package declaration
   # ---------------------
 
-  pkgs = import inputs.hydenix.inputs.hydenix-nixpkgs {
-    inherit (inputs.hydenix.lib) system;
+  pkgs = import inputs.hydenix.inputs.nixpkgs {
+    inherit system;
     config.allowUnfree = true;
     overlays = [
-      inputs.hydenix.lib.overlays
+      inputs.hydenix.overlays.default
     ];
 
     # Include your own package set to be used eg. pkgs.userPkgs.bash
@@ -20,6 +23,117 @@ let
   };
 in
 {
+  # Firewall
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [80 443 445 3000 5555];
+    allowPing = true;
+  };
+
+  # Samba
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "smbnix";
+        "netbios name" = "smbnix";
+        "security" = "user";
+        #"use sendfile" = "yes";
+        #"max protocol" = "smb2";
+        # note: localhost is the ipv6 localhost ::1
+        "hosts allow" = "192.168.117. 127.0.0.1 localhost";
+        "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      "NixOS-Share" = {
+        "path" = "/home/juan_ma7u7";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        # "force user" = "username";
+        # "force group" = "groupname";
+      };
+    };
+  };
+
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  # PostgreSQl
+  # services.postgresql = {
+  #   enable = true;
+  #   # Versión de PostgreSQL que quieres usar (por ejemplo, 16 o 17).
+  #   # Puedes omitir esta línea para usar la versión predeterminada de tu Nixpkgs.
+  #   # package = pkgs.postgresql_16; 
+
+  #   # Nombres de las bases de datos que quieres que se creen automáticamente al iniciar el servicio.
+  #   ensureDatabases = [ "mydatabase" ];
+
+  #   # También puedes asegurar que el usuario exista y tenga una contraseña.
+  #   # Esto creará un usuario PostgreSQL si no existe.
+  #   # Ten en cuenta que la contraseña se guardará en texto plano en la configuración de NixOS.
+  #   # Para producción, considera usar un método más seguro para gestionar credenciales.
+  #   ensureUsers = [{
+  #     name = "juan_ma7u7";
+  #   }];
+  #   # Configuración de autenticación (pg_hba.conf).
+  #   # Esta es una configuración muy básica que permite el acceso local a todas las bases de datos
+  #   # para todos los usuarios sin contraseña (método 'trust'). 
+  #   # ¡ADVERTENCIA! Para producción, DEBES configurar una autenticación más segura.
+  #   authentication = pkgs.lib.mkOverride 10 ''
+  #     # Regla para conexiones locales a través del socket de Unix (confiable para usuarios del sistema)
+  #     local   all             all                                     trust
+
+  #     # Regla para conexiones TCP/IP desde localhost (127.0.0.1)
+  #     # Esto permite que el usuario 'juan_ma7u7' se conecte a cualquier base de datos (o una específica)
+  #     # desde localhost, usando el método 'scram-sha-256' (más seguro que 'md5' o 'trust').
+  #     # Si quieres usar 'password' o 'md5' para compatibilidad o simplicidad, puedes cambiarlo.
+  #     # ¡IMPORTANTE! 'scram-sha-256' requiere que la contraseña del usuario se haya establecido con 'scram-sha-256'.
+  #     # Si creas el usuario con 'CREATE USER ... WITH PASSWORD ...', PostgreSQL usará el método por defecto.
+  #     # Para 'scram-sha-256', podrías necesitar: ALTER USER juan_ma7u7 PASSWORD 'tu_contraseña_segura';
+  #     host    all             juan_ma7u7      127.0.0.1/32            scram-sha-256
+
+  #     # Si prefieres una regla más general (y menos segura para producción), puedes usar:
+  #     # host    all             all             127.0.0.1/32            md5
+  #     # Esto permite que CUALQUIER usuario se conecte desde localhost usando md5.
+  #     # O, para un desarrollo muy rápido pero inseguro:
+  #     # host    all             all             127.0.0.1/32            trust
+  #     # Esto permite a CUALQUIER usuario conectarse desde localhost sin contraseña.
+  #     # ¡NO USAR 'trust' en producción para conexiones TCP/IP!
+  #   '';
+
+  #   # Si quieres permitir conexiones TCP/IP (por defecto están deshabilitadas por seguridad).
+  #   enableTCPIP = true;
+  #   port = 5432; # Puerto por defecto de PostgreSQL
+
+  #   # Puedes agregar configuración adicional de PostgreSQL aquí (postgresql.conf)
+  #   # extraConfig = ''
+  #   #   max_connections = 100
+  #   #   shared_buffers = 128MB
+  #   # '';
+  # };
+
+  # Opcional: Para poder interactuar con PostgreSQL desde la línea de comandos
+  # con herramientas como `psql`, puedes agregarlas a tus paquetes de sistema.
+  # environment.systemPackages = with pkgs; [
+  #     postgresql
+  # ];
+
+  environment.sessionVariables = with pkgs; {
+    # PRISMA
+    PRISMA_FMT_BINARY = "${prisma-engines}/bin/prisma-fmt";
+    PRISMA_QUERY_ENGINE_BINARY = "${prisma-engines}/bin/query-engine";
+    PRISMA_QUERY_ENGINE_LIBRARY = "${prisma-engines}/lib/libquery_engine.node";
+    PRISMA_SCHEMA_ENGINE_BINARY = "${prisma-engines}/bin/schema-engine";
+    PRISMA_INTROSPECTION_ENGINE_BINARY = "${prisma-engines}/bin/introspection-engine";
+  };
 
   # Set pkgs for hydenix globally, any file that imports pkgs will use this
   nixpkgs.pkgs = pkgs;
@@ -27,7 +141,7 @@ in
   imports = [
     inputs.hydenix.inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
-    inputs.hydenix.lib.nixOsModules
+    inputs.hydenix.nixosModules.default
     ./modules/system
 
     # === GPU-specific configurations ===
@@ -46,10 +160,10 @@ in
 
     # === CPU-specific configurations ===
     # For AMD CPUs
-    # inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
 
     # For Intel CPUs
-    inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-intel
+    # inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-intel
 
     # === Other common modules ===
     inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
@@ -59,6 +173,20 @@ in
   home-manager = {
     useGlobalPkgs = true;
     backupFileExtension = "nixbak";
+    backupCommand = pkgs.writeShellScript "hm-backup-existing-file" ''
+      target_path="$1"
+      backup_ext="''${HOME_MANAGER_BACKUP_EXT:-nixbak}"
+      timestamp="$(${pkgs.coreutils}/bin/date +%Y%m%d-%H%M%S)"
+      backup_path="''${target_path}.''${backup_ext}.''${timestamp}"
+      counter=0
+
+      while [ -e "$backup_path" ]; do
+        counter=$((counter + 1))
+        backup_path="''${target_path}.''${backup_ext}.''${timestamp}.''${counter}"
+      done
+
+      ${pkgs.coreutils}/bin/mv -- "$target_path" "$backup_path"
+    '';
     useUserPackages = true;
     extraSpecialArgs = {
       inherit inputs;
@@ -69,9 +197,7 @@ in
       { ... }:
       {
         imports = [
-          inputs.hydenix.lib.homeModules
-          # Nix-index-database - for comma and command-not-found
-          inputs.nix-index-database.hmModules.nix-index
+          inputs.hydenix.homeModules.default
           ./modules/hm
         ];
       };
@@ -82,7 +208,7 @@ in
     enable = true; # Enable the Hydenix module
 
     #! EDIT THESE VALUES
-    hostname = "juanma-asus-nixos"; # Change to your preferred hostname
+    hostname = "Lenovo-ThinkPad-L15"; # Change to your preferred hostname
     timezone = "America/Mexico_City"; # Change to your timezone
     locale = "en_US.UTF-8"; # Change to your preferred locale
 

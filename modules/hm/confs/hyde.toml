@@ -1,0 +1,4 @@
+[wallpaper]
+custom_paths = [
+    "$HOME/Pictures/Wallpapers",
+] # List of paths to search for wallpapers

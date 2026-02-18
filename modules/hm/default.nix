@@ -33,15 +33,15 @@
     fastfetch.enable = true; # fastfetch configuration
     firefox = {
       enable = true; # enable firefox module
-      useHydeConfig = false; # use hyde firefox configuration and extensions
-      useUserChrome = true; # if useHydeConfig is true, apply hyde userChrome CSS customizations
-      useUserJs = true; # if useHydeConfig is true, apply hyde user.js preferences
-      useExtensions = true; # if useHydeConfig is true, install hyde firefox extensions
+      # useHydeConfig = false; # use hyde firefox configuration and extensions
+      # useUserChrome = true; # if useHydeConfig is true, apply hyde userChrome CSS customizations
+      # useUserJs = true; # if useHydeConfig is true, apply hyde user.js preferences
+      # useExtensions = true; # if useHydeConfig is true, install hyde firefox extensions
     };
     git = {
       enable = true; # enable git module
-      name = "razkaroth"; # git user name eg "John Doe"
-      email = "rocker.ikaros@gmail.com"; # git user email eg "john.doe@example.com"
+      name = "JuanMa7u7"; # git user name eg "John Doe"
+      email = "jmlafuente97@gmail.com"; # git user email eg "john.doe@example.com"
     };
     hyde.enable = true; # enable hyde module
     hyprland.enable = true; # enable hyprland module
@@ -67,7 +67,7 @@
       #  configText = ""; # zsh config text
       bash.enable = false; # enable bash shell
       fish.enable = false; # enable fish shell
-      pokego.enable = true; # enable Pokemon ASCII art scripts
+      pokego.enable = false; # enable Pokemon ASCII art scripts
     };
     # social = {
     #   enable = true; # enable social module
@@ -75,8 +75,8 @@
     #   # webcord.enable = true; # enable webcord module
     #   vesktop.enable = true; # enable vesktop module
     # };
-    spotify.enable = true; # enable spotify module
-    swww.enable = true; # enable swww wallpaper daemon
+    spotify.enable = false; # enable spotify module
+    swww.enable = false; # enable swww wallpaper daemon
     terminals = {
       enable = true; # enable terminals module
       kitty.enable = true; # enable kitty terminal
@@ -86,13 +86,13 @@
     };
     theme = {
       enable = true; # enable theme module
-      active = "Catppuccin Mocha"; # active theme
+      active = "Scarlet Night"; # active theme
       themes = [
         "Catppuccin Mocha"
         "Rose Pine"
         "Red Stone"
         "Vanta Black"
-        "Cosmic Blue"
+        # "Cosmic Blue"
         "Scarlet Night"
         "Ever Blushing"
         "Another World"
@@ -101,7 +101,7 @@
         "Graphite Mono"
         "Gruvbox Retro"
         "Monokai"
-        "Moonlight"
+        # "Moonlight"
         "Tokyo Night"
         "Sci fi"
         "Solarized Dark"

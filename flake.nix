@@ -4,7 +4,6 @@
   inputs = {
     # User's nixpkgs - for user packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
     # Hydenix and its nixpkgs - kept separate to avoid conflicts
     hydenix = {
       # Available inputs:
@@ -20,15 +19,25 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    nixarr.url = "github:rasmus-kirk/nixarr";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs =
-    { ... }@inputs:
+    {
+      nixos-hardware,
+      nixarr,
+      zen-browser,
+      ... 
+    }@inputs:
     let
-      HOSTNAME = "juanma-asus-nixos";
+      HOSTNAME = "Lenovo-ThinkPad-L15";
+      SYSTEM = "x86_64-linux";
 
-      hydenixConfig = inputs.hydenix.inputs.hydenix-nixpkgs.lib.nixosSystem {
-        inherit (inputs.hydenix.lib) system;
+      hydenixConfig = inputs.hydenix.inputs.nixpkgs.lib.nixosSystem {
+        system = SYSTEM;
         specialArgs = {
           inherit inputs;
         };

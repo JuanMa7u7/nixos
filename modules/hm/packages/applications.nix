@@ -1,13 +1,13 @@
 { pkgs, inputs, ... }:
 let
-    system = "x86_64/linux";
+    system = "x86_64-linux";
 in
 {
     home.packages = with pkgs; [
     # ------------------------------- // Applications
         firefox
         bottles
-        # inputs.zen-browser.packages."${system}".default
+        inputs.zen-browser.packages."${system}".default
         brave
         chromium
         google-chrome
@@ -19,8 +19,16 @@ in
         typora
         transmission_4-gtk
         onlyoffice-desktopeditors
-        libsForQt5.networkmanager-qt
-        whatsapp-for-linux
+        kdePackages.networkmanager-qt
+        wasistlos
         telegram-desktop
+        neofetch
+        ipfetch
+        cmatrix
+        nyancat
+        swww
+        waypaper
+        x11vnc
+        thunderbird-bin
     ];
 }
