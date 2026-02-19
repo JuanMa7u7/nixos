@@ -48,5 +48,10 @@
     PROTON = "\${PROTON_EXPERIMENTAL}";
     # Other variables
     # NIX_BUILD_SHELL = "fish";
+    GOPATH = "\${HOME}/go";
   };
+
+  home.sessionPath = [
+    "\${HOME}/go/bin"
+  ];
 }
