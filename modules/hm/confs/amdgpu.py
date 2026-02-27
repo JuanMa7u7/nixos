@@ -2,32 +2,13 @@
 """
 Lightweight AMD GPU info helper for HyDE/Waybar.
 
-It prefers the pyamdgpuinfo library when available; otherwise it falls back to
-reading sysfs so it works on minimal installations without extra Python deps.
+It reads sysfs directly so it works on minimal installations without extra
+Python dependencies.
 """
 from __future__ import annotations
 
 import json
 from pathlib import Path
-
-
-def try_pyamdgpuinfo() -> dict | None:
-    try:
-        import pyamdgpuinfo  # type: ignore
-    except Exception:
-        return None
-
-    gpus = pyamdgpuinfo.detect_gpus()
-    if gpus == 0:
-        return None
-
-    gpu = pyamdgpuinfo.get_gpu(0)
-    return {
-        "GPU Temperature": f"{gpu.query_temperature():.0f}°C",
-        "GPU Load": f"{gpu.query_load():.1f}%",
-        "GPU Core Clock": fmt_freq(gpu.query_sclk()),
-        "GPU Power Usage": f"{gpu.query_power():.1f} Watts",
-    }
 
 
 def fmt_freq(hz: int) -> str:
