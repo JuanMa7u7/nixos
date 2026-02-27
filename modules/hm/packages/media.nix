@@ -5,6 +5,7 @@
         gimp3-with-plugins
         gnome-network-displays
         miraclecast
+        nwg-look
     # ------------------------------- // Music    
        
     ];
