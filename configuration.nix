@@ -66,6 +66,16 @@ in
     openFirewall = true;
   };
 
+  # Docker
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+    autoPrune = {
+      dates = "weekly";
+      flags = ["--all"];
+    };
+  };
+
   # PostgreSQl
   # services.postgresql = {
   #   enable = true;
