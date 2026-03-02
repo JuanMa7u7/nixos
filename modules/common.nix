@@ -52,16 +52,19 @@ in
   # Hydenix base común
   hydenix = {
     enable = true;
-    hostname = hostName;
 
+    hostname = hostName;
     timezone = "America/Mexico_City";
     locale = "en_US.UTF-8";
 
     boot = {
       enable = true;
       useSystemdBoot = true;
-      grubTheme = hydePkgs.hydenix.grub-retroboot;
+
+      # Hydenix espera STRING aquí:
+      grubTheme = "Retroboot";  # o "Pochita"
       grubExtraConfig = "";
+
       kernelPackages = hydePkgs.linuxPackages_zen;
     };
 
@@ -70,10 +73,8 @@ in
     network.enable = true;
     nix.enable = true;
 
-    sddm = {
-      enable = true;
-      theme = hydePkgs.hydenix.sddm-candy;
-    };
+    # En Hydenix es así (no hydenix.sddm.theme)
+    sddm.enable = true;
 
     system.enable = true;
   };
