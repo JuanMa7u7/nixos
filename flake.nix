@@ -1,20 +1,13 @@
 {
-  description = "template for hydenix";
+  description = "JuanMa NixOS (Hydenix) multi-host";
 
   inputs = {
-    # User's nixpkgs - for user packages
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Hydenix and its nixpkgs - kept separate to avoid conflicts
+
     hydenix = {
-      # Available inputs:
-      # Main: github:richen604/hydenix
-      # Dev: github:richen604/hydenix/dev
-      # Commit: github:richen604/hydenix/<commit-hash>
-      # Version: github:richen604/hydenix/v1.0.0
       url = "github:richen604/hydenix";
     };
 
-    # Nix-index-database - for comma and command-not-found
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,33 +15,43 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixarr.url = "github:rasmus-kirk/nixarr";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs =
-    {
-      nixos-hardware,
-      nixarr,
-      zen-browser,
-      ... 
-    }@inputs:
-    let
-      HOSTNAME = "Lenovo-ThinkPad-L15";
-      SYSTEM = "x86_64-linux";
+  outputs = inputs@{ self, ... }:
+  let
+    SYSTEM = "x86_64-linux";
+    lib = inputs.hydenix.inputs.nixpkgs.lib;
 
-      hydenixConfig = inputs.hydenix.inputs.nixpkgs.lib.nixosSystem {
+    mkHost = hostName: extraModules:
+      lib.nixosSystem {
         system = SYSTEM;
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          ./configuration.nix
-        ];
-      };
+        specialArgs = { inherit inputs hostName; };
 
-    in
-    {
-      nixosConfigurations.nixos = hydenixConfig;
-      nixosConfigurations.${HOSTNAME} = hydenixConfig;
+        modules =
+          [
+            ./modules/common.nix
+            ./hosts/${hostName}/hardware-configuration.nix
+            ./hosts/${hostName}/configuration.nix
+          ]
+          ++ extraModules;
+      };
+  in
+  {
+    nixosConfigurations = {
+      thinkpad-l15 = mkHost "thinkpad-l15" [
+        inputs.hydenix.inputs.nixos-hardware.nixosModules.lenovo-thinkpad-l15-amd
+        inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
+        inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
+        inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd
+      ];
+
+      mamalona = mkHost "mamalona" [
+        inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
+        inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd
+        inputs.hydenix.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+      ];
     };
+  };
 }
