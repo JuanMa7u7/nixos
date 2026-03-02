@@ -22,11 +22,18 @@
   outputs = inputs@{ self, ... }:
   let
     SYSTEM = "x86_64-linux";
-    lib = inputs.hydenix.inputs.nixpkgs.lib;
+    lib = inputs.nixpkgs.lib;
 
     mkHost = hostName: extraModules:
       lib.nixosSystem {
         system = SYSTEM;
+
+        pkgs = import inputs.nixpkgs {
+          system = SYSTEM;
+          config.allowUnfree = true;
+          overlays = [ inputs.hydenix.overlays.default ];
+        };
+
         specialArgs = { inherit inputs hostName; };
 
         modules =
