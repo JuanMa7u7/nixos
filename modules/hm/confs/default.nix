@@ -2,6 +2,11 @@
   
   home.file = {
     # Hyprland
+    ".config/hypr/monitors.conf" = pkgs.lib.mkForce {
+      source = ./monitors.conf;
+      force = true;
+      mutable = false;
+    };
     ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
       source = ./hypr.conf;
       force = true;
