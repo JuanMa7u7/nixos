@@ -6,6 +6,8 @@ let
       (pkgs.python3.withPackages (ps: [ ps.pyamdgpuinfo ]));
 in
 {
+  hydenix.hm.theme.active = "Gruvbox Retro";
+
   home.packages = amdGpuPython;
 
   home.file = {

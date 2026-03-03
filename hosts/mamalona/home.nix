@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  hydenix.hm.theme.active = "Scarlet Night";
+
   home.sessionVariables = {
     STEAMLIBRARY = "/mnt/juegos-ssd/SteamLibrary";
     STEAMLIBRARY_SSD = "/mnt/juegos-ssd/SteamLibrary";

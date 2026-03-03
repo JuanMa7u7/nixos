@@ -64,25 +64,24 @@
     };
     theme = {
       enable = true;
-      active = "Scarlet Night";
       themes = [
-        "Catppuccin Mocha"
-        "Rose Pine"
-        "Red Stone"
-        "Vanta Black"
+        # "Catppuccin Mocha"
+        # "Rose Pine"
+        # "Red Stone"
+        # "Vanta Black"
         # "Cosmic Blue"
         "Scarlet Night"
-        "Ever Blushing"
-        "Another World"
-        "Bad Blood"
-        "Cat Latte"
-        "Graphite Mono"
+        # "Ever Blushing"
+        # "Another World"
+        # "Bad Blood"
+        # "Cat Latte"
+        # "Graphite Mono"
         "Gruvbox Retro"
-        "Monokai"
+        # "Monokai"
         # "Moonlight"
-        "Tokyo Night"
-        "Sci fi"
-        "Solarized Dark"
+        # "Tokyo Night"
+        # "Sci fi"
+        # "Solarized Dark"
       ];
     };
     waybar.enable = true;
