@@ -31,14 +31,6 @@
     };
     hyde.enable = true;
     hyprland.enable = true;
-    hyprland.windowrules.overrideConfig = ''
-      # Layer-shell rules for Waybar
-      layerrule = blur on, match:namespace ^waybar$
-      layerrule = ignore_alpha 0, match:namespace ^waybar$
-
-      # Floating utility windows
-      windowrule = float on, center on, match:class ^(org\\.pulseaudio\\.pavucontrol)$
-    '';
     lockscreen = {
       enable = true;
       hyprlock = true;

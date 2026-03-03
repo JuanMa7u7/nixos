@@ -6,16 +6,6 @@
       force = true;
       mutable = true;
     };
-    ".local/share/hypr/windowrules.conf" = pkgs.lib.mkForce {
-      source = ./windowrules.conf;
-      force = true;
-      mutable = true;
-    };
-    ".config/hyde/config.toml" = pkgs.lib.mkForce {
-      source = ./hyde.toml;
-      force = true;
-      mutable = true;
-    };
   };
 
   home.activation = {

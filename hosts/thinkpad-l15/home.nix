@@ -15,12 +15,6 @@ in
       mutable = false;
     };
 
-    ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
-      source = ../../modules/hm/confs/hosts/thinkpad-l15/waybar.jsonc;
-      force = true;
-      mutable = false;
-    };
-
     ".local/lib/hyde/amdgpu.py" = pkgs.lib.mkForce {
       source = ../../modules/hm/confs/amdgpu.py;
       force = true;

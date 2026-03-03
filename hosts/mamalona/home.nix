@@ -14,11 +14,5 @@
       force = true;
       mutable = false;
     };
-
-    ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
-      source = ../../modules/hm/confs/hosts/mamalona/waybar.jsonc;
-      force = true;
-      mutable = false;
-    };
   };
 }
