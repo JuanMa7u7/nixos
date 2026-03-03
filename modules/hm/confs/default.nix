@@ -6,6 +6,16 @@
       force = true;
       mutable = true;
     };
+    ".config/hypr/windowrules.conf" = pkgs.lib.mkForce {
+      source = ./windowrules.conf;
+      force = true;
+      mutable = true;
+    };
+    ".local/share/hypr/windowrules.conf" = pkgs.lib.mkForce {
+      source = ./windowrules.conf;
+      force = true;
+      mutable = true;
+    };
   };
 
   home.activation = {
