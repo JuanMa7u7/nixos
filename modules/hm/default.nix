@@ -1,51 +1,36 @@
 { ... }:
-
 {
-
   imports = [
-    # ./example.nix - add your modules here
     ./packages
     ./programs
     ./confs
   ];
 
-  # home-manager options go here
-  home.packages = [
-    # pkgs.vscode - hydenix's vscode version
-    # pkgs.userPkgs.vscode - your personal nixpkgs version
-  ];
+  home.packages = [ ];
 
-  # hydenix home-manager options go here
   hydenix.hm = {
-    #! Important options
     enable = true;
-    comma.enable = true; # useful nix tool to run software without installing it first
-    dolphin.enable = true; # file manager
+    comma.enable = true;
+    dolphin.enable = true;
     editors = {
-      enable = true; # enable editors module
-      # neovim.enable = true; # enable neovim module
+      enable = true;
       vscode = {
-        enable = false; # enable vscode module
-        wallbash = true; # enable wallbash extension for vscode
+        enable = false;
+        wallbash = true;
       };
-      # vim.enable = true; # enable vim module
-      default = "nvim"; # default text editor
+      default = "nvim";
     };
-    fastfetch.enable = true; # fastfetch configuration
+    fastfetch.enable = true;
     firefox = {
-      enable = true; # enable firefox module
-      # useHydeConfig = false; # use hyde firefox configuration and extensions
-      # useUserChrome = true; # if useHydeConfig is true, apply hyde userChrome CSS customizations
-      # useUserJs = true; # if useHydeConfig is true, apply hyde user.js preferences
-      # useExtensions = true; # if useHydeConfig is true, install hyde firefox extensions
+      enable = true;
     };
     git = {
-      enable = true; # enable git module
-      name = "JuanMa7u7"; # git user name eg "John Doe"
-      email = "jmlafuente97@gmail.com"; # git user email eg "john.doe@example.com"
+      enable = true;
+      name = "JuanMa7u7";
+      email = "jmlafuente97@gmail.com";
     };
-    hyde.enable = true; # enable hyde module
-    hyprland.enable = true; # enable hyprland module
+    hyde.enable = true;
+    hyprland.enable = true;
     hyprland.windowrules.overrideConfig = ''
       # Layer-shell rules for Waybar
       layerrule = blur on, match:namespace ^waybar$
@@ -55,47 +40,39 @@
       windowrule = float on, center on, match:class ^(org\\.pulseaudio\\.pavucontrol)$
     '';
     lockscreen = {
-      enable = true; # enable lockscreen module
-      hyprlock = true; # enable hyprlock lockscreen
-      swaylock = false; # enable swaylock lockscreen
+      enable = true;
+      hyprlock = true;
+      swaylock = false;
     };
-    notifications.enable = true; # enable notifications module
-    qt.enable = true; # enable qt module
-    rofi.enable = true; # enable rofi module
+    notifications.enable = true;
+    qt.enable = true;
+    rofi.enable = true;
     screenshots = {
-      enable = true; # enable screenshots module
-      grim.enable = true; # enable grim screenshot tool
-      slurp.enable = true; # enable slurp region selection tool
-      satty.enable = true; # enable satty screenshot annotation tool
-      swappy.enable = false; # enable swappy screenshot editor
+      enable = true;
+      grim.enable = true;
+      slurp.enable = true;
+      satty.enable = true;
+      swappy.enable = false;
     };
-    #wallpapers.enable = true; # enable wallpapers module
     shell = {
-      enable = true; # enable shell module
-      zsh.enable = true; # enable zsh shell
-      #  configText = ""; # zsh config text
-      bash.enable = false; # enable bash shell
-      fish.enable = false; # enable fish shell
-      pokego.enable = false; # enable Pokemon ASCII art scripts
+      enable = true;
+      zsh.enable = true;
+      bash.enable = false;
+      fish.enable = false;
+      pokego.enable = false;
     };
-    # social = {
-    #   enable = true; # enable social module
-    #   # discord.enable = true; # enable discord module
-    #   # webcord.enable = true; # enable webcord module
-    #   vesktop.enable = true; # enable vesktop module
-    # };
-    spotify.enable = false; # enable spotify module
-    swww.enable = false; # enable swww wallpaper daemon
+    spotify.enable = false;
+    swww.enable = false;
     terminals = {
-      enable = true; # enable terminals module
-      kitty.enable = true; # enable kitty terminal
+      enable = true;
+      kitty.enable = true;
       kitty.configText = ''
         allow_remote_control yes
-        ''; # kitty config text
+      '';
     };
     theme = {
-      enable = true; # enable theme module
-      active = "Scarlet Night"; # active theme
+      enable = true;
+      active = "Scarlet Night";
       themes = [
         "Catppuccin Mocha"
         "Rose Pine"
@@ -114,10 +91,10 @@
         "Tokyo Night"
         "Sci fi"
         "Solarized Dark"
-      ]; # default enabled themes, full list in https://github.com/richen604/hydenix/tree/main/hydenix/sources/themes
+      ];
     };
-    waybar.enable = true; # enable waybar module
-    wlogout.enable = true; # enable wlogout module
-    xdg.enable = true; # enable xdg module
+    waybar.enable = true;
+    wlogout.enable = true;
+    xdg.enable = true;
   };
 }

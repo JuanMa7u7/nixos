@@ -1,42 +1,18 @@
-{ pkgs, lib, ... }:{
-  
+{ lib, pkgs, ... }:
+{
   home.file = {
-    # Hyprland
-    ".config/hypr/monitors.conf" = pkgs.lib.mkForce {
-      source = ./monitors.conf;
-      force = true;
-      mutable = false;
-    };
     ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
       source = ./hypr.conf;
       force = true;
       mutable = true;
     };
     ".local/share/hypr/windowrules.conf" = pkgs.lib.mkForce {
+      source = ./windowrules.conf;
       force = true;
-      text = ''
-        # Hyprland window rules
-        layerrule = blur on, match:namespace ^waybar$
-        layerrule = ignore_alpha 0, match:namespace ^waybar$
-        windowrule = float on, center on, match:class ^(org\\.pulseaudio\\.pavucontrol)$
-      '';
       mutable = true;
     };
-    # Waybar
-    ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
-      source = ./waybar.jsonc;
-      force = true;
-      mutable = false;
-    };
-    # HyDE
     ".config/hyde/config.toml" = pkgs.lib.mkForce {
       source = ./hyde.toml;
-      force = true;
-      mutable = true;
-    };
-    # Override HyDE's AMD helper to remove the pyamdgpuinfo dependency and use sysfs fallback
-    ".local/lib/hyde/amdgpu.py" = pkgs.lib.mkForce {
-      source = ./amdgpu.py;
       force = true;
       mutable = true;
     };
@@ -66,23 +42,15 @@
     NIXPKGS_ALLOW_UNFREE = "1";
     NIXPKGS_ALLOW_INSECURE = "1";
     XCURSOR_SIZE = "24";
-    # Gaming
     STEAM_COMPAT_TOOLS_HOME = "\${HOME}/.local/share/Steam/compatibilitytools.d";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
       "\${HOME}/.steam/root/compatibilitytools.d:\${STEAM_COMPAT_TOOLS_HOME}";
-    STEAMLIBRARY = "/mnt/juegos-ssd/SteamLibrary";
-    STEAMLIBRARY_SSD = "/mnt/juegos-ssd/SteamLibrary";
-    STEAMLIBRARY_HDD = "/mnt/juegos-hdd/SteamLibrary";
-    PRESSURE_VESSEL_FILESYSTEMS_RW =
-      "\${HOME}:/mnt/juegos-ssd:/mnt/juegos-hdd:/mnt/datos";
     PROTON_EXPERIMENTAL =
       "\${HOME}/.local/share/Steam/steamapps/common/Proton - Experimental";
     PROTON_GE = "\${STEAM_COMPAT_TOOLS_HOME}";
     PROTON = "\${PROTON_EXPERIMENTAL}";
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
     STEAM_USE_MANGOAPP = "1";
-    # Other variables
-    # NIX_BUILD_SHELL = "fish";
     GOPATH = "\${HOME}/go";
   };
 

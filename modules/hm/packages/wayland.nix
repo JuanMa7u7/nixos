@@ -1,7 +1,6 @@
-{ pkgs, inputs, ... }:
-
+{ pkgs, ... }:
 {
-    home.packages = with pkgs; [
-        wlsunset
-    ];
+  home.packages = with pkgs; [
+    wlsunset
+  ];
 }

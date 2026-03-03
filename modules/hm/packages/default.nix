@@ -1,9 +1,10 @@
-{ ... }: {
-    imports = [
-        ./applications.nix
-        ./dev.nix
-        ./media.nix
-        ./gaming.nix
-        ./wayland.nix
-    ];
+{ ... }:
+{
+  imports = [
+    ./applications.nix
+    ./dev.nix
+    ./gaming.nix
+    ./media.nix
+    ./wayland.nix
+  ];
 }
