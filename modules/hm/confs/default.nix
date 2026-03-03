@@ -69,7 +69,9 @@
     # Gaming
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
       "\${HOME}/.steam/root/compatibilitytools.d";
-    STEAMLIBRARY = "\${HOME}/.steam/steam";
+    STEAMLIBRARY = "/mnt/juegos-ssd/SteamLibrary";
+    STEAMLIBRARY_SSD = "/mnt/juegos-ssd/SteamLibrary";
+    STEAMLIBRARY_HDD = "/mnt/juegos-hdd/SteamLibrary";
     PROTON_EXPERIMENTAL =
       "\${HOME}/.local/share/Steam/steamapps/common/Proton - Experimental";
     PROTON_GE = "\${STEAM_EXTRA_COMPAT_TOOLS_PATHS}/Proton-GE";
