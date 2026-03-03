@@ -67,15 +67,20 @@
     NIXPKGS_ALLOW_INSECURE = "1";
     XCURSOR_SIZE = "24";
     # Gaming
+    STEAM_COMPAT_TOOLS_HOME = "\${HOME}/.local/share/Steam/compatibilitytools.d";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-      "\${HOME}/.steam/root/compatibilitytools.d";
+      "\${HOME}/.steam/root/compatibilitytools.d:\${STEAM_COMPAT_TOOLS_HOME}";
     STEAMLIBRARY = "/mnt/juegos-ssd/SteamLibrary";
     STEAMLIBRARY_SSD = "/mnt/juegos-ssd/SteamLibrary";
     STEAMLIBRARY_HDD = "/mnt/juegos-hdd/SteamLibrary";
+    PRESSURE_VESSEL_FILESYSTEMS_RW =
+      "\${HOME}:/mnt/juegos-ssd:/mnt/juegos-hdd:/mnt/datos";
     PROTON_EXPERIMENTAL =
       "\${HOME}/.local/share/Steam/steamapps/common/Proton - Experimental";
-    PROTON_GE = "\${STEAM_EXTRA_COMPAT_TOOLS_PATHS}/Proton-GE";
+    PROTON_GE = "\${STEAM_COMPAT_TOOLS_HOME}";
     PROTON = "\${PROTON_EXPERIMENTAL}";
+    SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+    STEAM_USE_MANGOAPP = "1";
     # Other variables
     # NIX_BUILD_SHELL = "fish";
     GOPATH = "\${HOME}/go";

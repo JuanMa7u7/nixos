@@ -1,7 +1,17 @@
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 
 {
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    protontricks.enable = true;
+    extest.enable = true;
+    gamescopeSession.enable = true;
+  };
+
+  programs.gamemode.enable = true;
+  programs.gamescope.enable = true;
 
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
