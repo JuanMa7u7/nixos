@@ -48,7 +48,6 @@
   {
     nixosConfigurations = {
       thinkpad-l15 = mkHost "thinkpad-l15" [
-        inputs.hydenix.inputs.nixos-hardware.nixosModules.lenovo-thinkpad-l15-amd
         inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
         inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
         inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd

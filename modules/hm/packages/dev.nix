@@ -34,7 +34,6 @@ in
       nodejs_20
       pnpm_9
       openssl
-      nodePackages_latest.vercel
       prisma
       prisma-engines
       go_1_26

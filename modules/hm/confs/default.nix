@@ -1,20 +1,21 @@
 { pkgs, lib, ... }:{
+  
   home.file = {
     # Hyprland
     ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
-    source = ./hypr.conf;
+      source = ./hypr.conf;
       force = true;
       mutable = true;
     };
     # Waybar
     ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
-    source = ./waybar.jsonc;
+      source = ./waybar.jsonc;
       force = true;
       mutable = true;
     };
     # HyDE
     ".config/hyde/config.toml" = pkgs.lib.mkForce {
-    source = ./hyde.toml;
+      source = ./hyde.toml;
       force = true;
       mutable = true;
     };

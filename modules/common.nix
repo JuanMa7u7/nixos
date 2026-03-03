@@ -1,10 +1,6 @@
 { config, pkgs, inputs, hostName, lib, ... }:
 
 {
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [ inputs.hydenix.overlays.default ];
-  };
 
   networking.hostName = hostName;
 
@@ -32,7 +28,21 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "nixbak";
+    backupFileExtension = "hm-bak";
+    backupCommand = pkgs.writeShellScript "hm-backup-existing-file" ''
+      target_path="$1"
+      backup_ext="''${HOME_MANAGER_BACKUP_EXT:-hm-bak}"
+      timestamp="$(${pkgs.coreutils}/bin/date +%Y%m%d-%H%M%S)"
+      backup_path="''${target_path}.''${backup_ext}.''${timestamp}"
+      counter=0
+
+      while [ -e "$backup_path" ]; do
+        counter=$((counter + 1))
+        backup_path="''${target_path}.''${backup_ext}.''${timestamp}.''${counter}"
+      done
+
+      ${pkgs.coreutils}/bin/mv -- "$target_path" "$backup_path"
+    '';
     extraSpecialArgs = { inherit inputs; };
 
     users."juan_ma7u7" = {
