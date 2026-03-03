@@ -7,6 +7,16 @@
       force = true;
       mutable = true;
     };
+    ".local/share/hypr/windowrules.conf" = pkgs.lib.mkForce {
+      force = true;
+      text = ''
+        # Hyprland window rules
+        layerrule = blur on, match:namespace ^waybar$
+        layerrule = ignore_alpha 0, match:namespace ^waybar$
+        windowrule = float on, center on, match:class ^(org\\.pulseaudio\\.pavucontrol)$
+      '';
+      mutable = true;
+    };
     # Waybar
     ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
       source = ./waybar.jsonc;
