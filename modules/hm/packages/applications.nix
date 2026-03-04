@@ -29,5 +29,7 @@ in
     wasistlos
     waypaper
     x11vnc
+    waytrogen
+    cura-appimage
   ];
 }
