@@ -5,5 +5,6 @@
     gnome-network-displays
     miraclecast
     nwg-look
+    vlc
   ];
 }

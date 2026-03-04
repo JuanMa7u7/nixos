@@ -5,11 +5,16 @@ let
 in
 {
   home.file = {
-    # ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
-    #   source = ./hypr.conf;
-    #   force = true;
-    #   mutable = true;
-    # };
+    ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
+      text = ''
+        exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+        exec-once = ${pkgs.xorg.xhost}/bin/xhost +SI:localuser:root
+
+        ${builtins.readFile ./hypr.conf}
+      '';
+      force = true;
+      mutable = true;
+    };
     ".config/hyde/config.toml" = pkgs.lib.mkForce {
       source = ./config.toml;
       force = true;

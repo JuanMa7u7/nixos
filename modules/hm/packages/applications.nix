@@ -1,6 +1,15 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 let
   system = "x86_64-linux";
+  gpartedWrapper = pkgs.writeShellScriptBin "gparted" ''
+    exec pkexec --disable-internal-agent \
+      env \
+      DISPLAY="$DISPLAY" \
+      XAUTHORITY="''${XAUTHORITY:-$HOME/.Xauthority}" \
+      GDK_BACKEND=x11 \
+      WAYLAND_DISPLAY= \
+      "${pkgs.gparted-full}/libexec/gpartedbin" "$@"
+  '';
 in
 {
   home.packages = with pkgs; [
@@ -32,5 +41,20 @@ in
     waytrogen
     cura-appimage
     gparted-full
+    (lib.hiPrio gpartedWrapper)
   ];
+
+  xdg.desktopEntries.gparted = {
+    name = "GParted";
+    genericName = "Partition Editor";
+    comment = "Create, reorganize, and delete partitions";
+    exec = "gparted %f";
+    icon = "gparted";
+    terminal = false;
+    categories = [
+      "GNOME"
+      "System"
+      "Filesystem"
+    ];
+  };
 }
