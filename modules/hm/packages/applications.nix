@@ -31,5 +31,6 @@ in
     x11vnc
     waytrogen
     cura-appimage
+    gparted-full
   ];
 }
