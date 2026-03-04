@@ -39,11 +39,7 @@ in
       if [ -f "$HOME/.local/share/hypr/defaults.conf" ]; then
         ${pkgs.gnused}/bin/sed -i '/^[[:space:]]*gesture[[:space:]]*=/d' "$HOME/.local/share/hypr/defaults.conf"
       fi
-    '';it worked!
-
-
-
-and now, when i rebuild the system, get to this part: restarting sysinit-reactivation.target, it takes a lot to 
+    '';
 
     hydePruneUndeclaredThemes = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       themes_dir="$HOME/.config/hyde/themes"
