@@ -10,6 +10,11 @@ in
     #   force = true;
     #   mutable = true;
     # };
+    ".config/hyde/config.toml" = pkgs.lib.mkForce {
+      source = ./config.toml;
+      force = true;
+      mutable = true;
+    };
     ".config/hypr/windowrules.conf" = pkgs.lib.mkForce {
       source = ./windowrules.conf;
       force = true;
