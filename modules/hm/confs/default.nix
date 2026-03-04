@@ -8,7 +8,7 @@ in
     ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
       text = ''
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-        exec-once = ${pkgs.xorg.xhost}/bin/xhost +SI:localuser:root
+        exec-once = ${pkgs.xhost}/bin/xhost +SI:localuser:root
 
         ${builtins.readFile ./hypr.conf}
       '';
