@@ -1,34 +1,33 @@
 { pkgs, inputs, ... }:
 let
-    system = "x86_64-linux";
+  system = "x86_64-linux";
 in
 {
-    home.packages = with pkgs; [
-    # ------------------------------- // Applications
-        firefox
-        bottles
-        inputs.zen-browser.packages."${system}".default
-        brave
-        chromium
-        google-chrome
-        vesktop
-        pomodoro
-        sunvox
-        obsidian
-        obs-studio
-        typora
-        transmission_4-gtk
-        onlyoffice-desktopeditors
-        kdePackages.networkmanager-qt
-        wasistlos
-        telegram-desktop
-        neofetch
-        ipfetch
-        cmatrix
-        nyancat
-        swww
-        waypaper
-        x11vnc
-        thunderbird-bin
-    ];
+  home.packages = with pkgs; [
+    bottles
+    brave
+    chromium
+    cmatrix
+    firefox
+    google-chrome
+    inputs.zen-browser.packages."${system}".default
+    ipfetch
+    kdePackages.networkmanager-qt
+    neofetch
+    nyancat
+    obs-studio
+    obsidian
+    onlyoffice-desktopeditors
+    pomodoro
+    sunvox
+    swww
+    telegram-desktop
+    thunderbird-bin
+    transmission_4-gtk
+    typora
+    vesktop
+    wasistlos
+    waypaper
+    x11vnc
+  ];
 }

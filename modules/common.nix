@@ -1,7 +1,5 @@
-{ config, pkgs, inputs, hostName, lib, ... }:
-
+{ inputs, hostName, pkgs, ... }:
 {
-
   networking.hostName = hostName;
 
   imports = [
@@ -43,12 +41,15 @@
 
       ${pkgs.coreutils}/bin/mv -- "$target_path" "$backup_path"
     '';
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit hostName inputs;
+    };
 
     users."juan_ma7u7" = {
       imports = [
         inputs.hydenix.homeModules.default
         ./hm
+        ../hosts/${hostName}/home.nix
       ];
     };
   };

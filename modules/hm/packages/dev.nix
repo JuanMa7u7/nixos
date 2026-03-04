@@ -1,42 +1,21 @@
-{ pkgs, inputs, config, lib, ... }:
-let
-  # pyamdgpuinfo gives the AMD path in gpuinfo.sh real data instead of falling
-  # back to the generic sensors output. It is optional because some pinned
-  # nixpkgs revisions might not expose the attribute.
-  pythonWithAmd =
-    let pyamdgpuinfo = pkgs.python3Packages.pyamdgpuinfo or null;
-    in pkgs.lib.optional (pyamdgpuinfo != null)
-         (pkgs.python3.withPackages (ps: [ ps.pyamdgpuinfo ]));
-in
+{ pkgs, lib, ... }:
 {
   home.packages =
     (with pkgs; [
-      # ------------------------------- // Software Development
-
-      # k8s
-
-      #CLoud
-
-      #Tools
-      github-cli
-      opencode
-      tmux
-      gcc
-      libgcc
-      # code-cursor
-      vscode
-
-      #DB
       mongodb-tools
       dbeaver-bin
-
-      #langs
+      gcc
+      github-cli
+      go_1_26
+      libgcc
       nodejs_20
-      pnpm_9
       openssl
+      opencode
+      pnpm_9
       prisma
       prisma-engines
-      go_1_26
+      tmux
+      vscode
       (lib.hiPrio flutter)
-    ]) ++ pythonWithAmd;
+    ]);
 }

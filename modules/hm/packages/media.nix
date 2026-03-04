@@ -1,12 +1,9 @@
-{ pkgs, inputs, ... }:
-
+{ pkgs, ... }:
 {
-    home.packages = with pkgs; [
-        gimp3-with-plugins
-        gnome-network-displays
-        miraclecast
-        nwg-look
-    # ------------------------------- // Music    
-       
-    ];
+  home.packages = with pkgs; [
+    gimp3-with-plugins
+    gnome-network-displays
+    miraclecast
+    nwg-look
+  ];
 }
