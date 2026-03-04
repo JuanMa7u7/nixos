@@ -51,6 +51,14 @@ in
       fi
     '';
 
+    waybarEnableCaffeineOnStartup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      waybar_config="$HOME/.config/waybar/waybar.jsonc"
+
+      if [ -f "$waybar_config" ] && ! ${pkgs.gnugrep}/bin/grep -Fq '"start-activated": true' "$waybar_config"; then
+        ${pkgs.gnused}/bin/sed -i '/"tooltip-format-deactivated": "Caffeine Mode Inactive"/a\        "start-activated": true,' "$waybar_config"
+      fi
+    '';
+
     hydePruneUndeclaredThemes = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       themes_dir="$HOME/.config/hyde/themes"
 
