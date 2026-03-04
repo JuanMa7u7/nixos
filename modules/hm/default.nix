@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./packages
@@ -7,6 +7,23 @@
   ];
 
   home.packages = [ ];
+
+  systemd.user.services.polkit-gnome-authentication-agent = {
+    Unit = {
+      Description = "Polkit authentication agent";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart =
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
 
   hydenix.hm = {
     enable = true;
