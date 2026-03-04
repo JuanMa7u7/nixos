@@ -12,5 +12,6 @@
         steam-run
         vulkan-tools
         winetricks
+        protonup-qt
     ];
 }
