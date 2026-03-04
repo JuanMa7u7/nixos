@@ -26,7 +26,7 @@
     ".config/waybar/config.jsonc" = pkgs.lib.mkForce {
       source = ./waybar.jsonc;
       force = true;
-      mutable = true;
+      mutable = false;
     };
     # HyDE
     ".config/hyde/config.toml" = pkgs.lib.mkForce {
