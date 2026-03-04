@@ -1,4 +1,8 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  declaredHydeThemes = config.hydenix.hm.theme.themes or [ ];
+  declaredHydeThemesArgs = lib.escapeShellArgs declaredHydeThemes;
+in
 {
   home.file = {
     # ".config/hypr/userprefs.conf" = pkgs.lib.mkForce {
@@ -35,6 +39,33 @@
       if [ -f "$HOME/.local/share/hypr/defaults.conf" ]; then
         ${pkgs.gnused}/bin/sed -i '/^[[:space:]]*gesture[[:space:]]*=/d' "$HOME/.local/share/hypr/defaults.conf"
       fi
+    '';it worked!
+
+
+
+and now, when i rebuild the system, get to this part: restarting sysinit-reactivation.target, it takes a lot to 
+
+    hydePruneUndeclaredThemes = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      themes_dir="$HOME/.config/hyde/themes"
+
+      if [ ! -d "$themes_dir" ]; then
+        exit 0
+      fi
+
+      keep_file="$(${pkgs.coreutils}/bin/mktemp)"
+      trap '${pkgs.coreutils}/bin/rm -f "$keep_file"' EXIT
+
+      for theme in ${declaredHydeThemesArgs}; do
+        printf '%s\n' "$theme" >> "$keep_file"
+      done
+
+      find "$themes_dir" -mindepth 1 -maxdepth 1 -type d | while IFS= read -r theme_dir; do
+        theme_name="$(${pkgs.coreutils}/bin/basename "$theme_dir")"
+
+        if ! ${pkgs.gnugrep}/bin/grep -Fxq "$theme_name" "$keep_file"; then
+          rm -rf "$theme_dir"
+        fi
+      done
     '';
   };
 
