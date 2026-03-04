@@ -12,14 +12,10 @@
     options = [ "rw" "uid=1000" "gid=100" "umask=022" "windows_names" ];
   };
 
-  fileSystems."/mnt/juegos-ssd" = {
-    device = "/dev/disk/by-uuid/FC8C3E5E8C3E141C";
-    fsType = "ntfs3";
-    options = [ "rw" "uid=1000" "gid=100" "umask=022" "windows_names" ];
-  };
-
   systemd.tmpfiles.rules = [
-    "d /mnt/juegos-hdd/SteamLibrary 0755 juan_ma7u7 users - -"
-    "d /mnt/juegos-ssd/SteamLibrary 0755 juan_ma7u7 users - -"
+    "z /mnt/juegos-ssd 0755 juan_ma7u7 users - -"
+    "z /mnt/juegos-hdd 0755 juan_ma7u7 users - -"
+    "Z /mnt/juegos-hdd/SteamLibrary 0755 juan_ma7u7 users - -"
+    "Z /mnt/juegos-ssd/SteamLibrary 0755 juan_ma7u7 users - -"
   ];
 }
