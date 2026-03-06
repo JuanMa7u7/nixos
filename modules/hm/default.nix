@@ -59,7 +59,17 @@
     };
     shell = {
       enable = true;
+      starship.enable = true;
       zsh.enable = true;
+      zsh.configText = ''
+      export PATH=$HOME/.local/bin:$PATH
+      export PATH="/home/raz/.cache/.bun/bin:$PATH"
+      export PATH="$PATH:$HOME/go/bin"
+      #export ZK_NOTEBOOK_DIR="$HOME/vaults/codex-astartes/"
+      
+      #eval "$(zoxide init zsh)"
+      eval "$(direnv hook zsh)"
+      '';
       bash.enable = false;
       fish.enable = false;
       pokego.enable = false;

@@ -19,5 +19,6 @@
       tmux
       vscode
       (lib.hiPrio flutter)
+      direnv
     ]);
 }
