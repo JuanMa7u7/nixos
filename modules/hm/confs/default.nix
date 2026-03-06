@@ -97,9 +97,11 @@ in
     SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
     STEAM_USE_MANGOAPP = "1";
     GOPATH = "\${HOME}/go";
+    NPM_CONFIG_PREFIX = "\${HOME}/.local/share/npm";
   };
 
   home.sessionPath = [
     "\${HOME}/go/bin"
+    "\${HOME}/.local/share/npm/bin"
   ];
 }
