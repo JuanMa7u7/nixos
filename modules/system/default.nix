@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [ ];
 
@@ -11,5 +11,10 @@
     udisks2.enable = true;
   };
 
-  environment.systemPackages = [ ];
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
+
+  environment.systemPackages = with pkgs; [ docker-compose ];
 }
