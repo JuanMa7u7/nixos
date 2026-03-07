@@ -9,6 +9,7 @@
   services = {
     gvfs.enable = true;
     udisks2.enable = true;
+    tailscale.enable = true;
   };
 
   virtualisation.docker = {
@@ -16,5 +17,8 @@
     enableOnBoot = true;
   };
 
-  environment.systemPackages = with pkgs; [ docker-compose ];
+  environment.systemPackages = with pkgs; [
+    docker-compose
+    tailscale
+  ];
 }
