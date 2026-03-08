@@ -42,7 +42,7 @@
 
   users.users."juan_ma7u7" = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "docker" "games" ];
     shell = pkgs.zsh;
   };
 
