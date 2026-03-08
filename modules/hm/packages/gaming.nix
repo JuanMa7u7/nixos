@@ -17,5 +17,6 @@
         openrgb-with-all-plugins
         lsfg-vk
         piper
+        libratbag
     ];
 }
