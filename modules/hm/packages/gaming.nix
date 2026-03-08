@@ -12,5 +12,10 @@
         vulkan-tools
         winetricks
         protonup-qt
+        mangohud
+        mangojuice
+        openrgb-with-all-plugins
+        lsfg-vk
+        piper
     ];
 }
