@@ -1,6 +1,6 @@
 # NixOS Configuration
 
-This repository manages two NixOS hosts with a shared Hydenix-based desktop layer:
+This repository manages two NixOS hosts with a shared Hydenix + Caelestia desktop layer:
 
 - `thinkpad-l15`: laptop-oriented profile
 - `mamalona`: desktop profile with Nvidia-specific configuration
@@ -8,11 +8,12 @@ This repository manages two NixOS hosts with a shared Hydenix-based desktop laye
 ## Layout
 
 - `flake.nix`: host definitions and shared inputs
-- `modules/common.nix`: shared system and Home Manager bootstrap
-- `modules/system`: system-wide shared defaults
-- `modules/hm`: shared Home Manager modules
+- `common/default.nix`: shared system and Home Manager bootstrap
+- `common/system`: system-wide shared defaults
+- `common/hm`: shared Home Manager modules and Caelestia/Hypr configs
 - `hosts/<name>/configuration.nix`: host-specific NixOS settings
 - `hosts/<name>/home.nix`: host-specific Home Manager settings
+- `hosts/<name>/hm`: host-specific Home Manager overrides (monitors, etc.)
 - `hosts/<name>/system.nix`: host-local system fragments when needed
 
 ## Conventions

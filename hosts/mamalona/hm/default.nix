@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    ./hm
+    ./confs/default.nix
   ];
 }

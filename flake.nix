@@ -6,6 +6,11 @@
 
     hydenix.url = "github:richen604/hydenix";
 
+    caelestia-shell = {
+      url = "github:Razkaroth/caelestia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +47,7 @@
 
           modules =
             [
-              ./modules/common.nix
+              ./common/default.nix
               ./hosts/${hostName}/hardware-configuration.nix
               ./hosts/${hostName}/configuration.nix
             ]

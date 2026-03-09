@@ -1,5 +1,51 @@
 {
   "nodes": {
+    "caelestia-cli": {
+      "inputs": {
+        "caelestia-shell": [
+          "caelestia-shell"
+        ],
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770345569,
+        "narHash": "sha256-aXzEWD44Htg0kHdrT/j2Odxt1EXqdJR9s8fDpEAEZtY=",
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "rev": "2395347d36dc12c4ad7471bcec030d75538c128c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caelestia-dots",
+        "repo": "cli",
+        "type": "github"
+      }
+    },
+    "caelestia-shell": {
+      "inputs": {
+        "caelestia-cli": "caelestia-cli",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1770917142,
+        "narHash": "sha256-rbh9QDomzHmHxylQie8A54rt//Rrf7jhneccVd8yEZY=",
+        "owner": "Razkaroth",
+        "repo": "caelestia-shell",
+        "rev": "0511854ad7df3cda3983052ed7eaae00747e4b3a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Razkaroth",
+        "repo": "caelestia-shell",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -356,8 +402,31 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "caelestia-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763446574,
+        "narHash": "sha256-7Xu61mmAjQb1usfIg096VIh6f26fFYd0Z9e6tNdII0w=",
+        "ref": "refs/heads/master",
+        "rev": "1ddb355121484bcac70f49edd4bd006b1d3a753e",
+        "revCount": 707,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "rev": "1ddb355121484bcac70f49edd4bd006b1d3a753e",
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "root": {
       "inputs": {
+        "caelestia-shell": "caelestia-shell",
         "hydenix": "hydenix",
         "nix-index-database": "nix-index-database_2",
         "nixarr": "nixarr",
