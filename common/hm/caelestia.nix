@@ -224,8 +224,10 @@ in
       hideDelay = 2000;
     };
     paths = {
-      mediaGif = "root:/assets/gojo.gif";
-      sessionGif = "root:/assets/maid.gif";
+      # mediaGif = "root:/assets/gojo.gif";
+      mediaGif = "~/Pictures/Caelestia/HALO-SPARTANS-DANCING.gif";
+      # sessionGif = "root:/assets/maid.gif";
+      sessionGif = "~/Pictures/Caelestia/HALO-TEABAG.gif";
       wallpaperDir = "~/Pictures/wallpaper";
       gifDuration = 2.8;
       beatsPerLoop = 8;

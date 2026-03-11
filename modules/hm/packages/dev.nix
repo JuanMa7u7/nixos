@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 {
-  home.packages =
-    (with pkgs; [
+  home.packages = with pkgs; [
       mongodb-tools
       dbeaver-bin
       gcc
@@ -20,5 +19,5 @@
       vscode
       (lib.hiPrio flutter)
       direnv
-    ]);
+    ];
 }

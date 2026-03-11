@@ -44,6 +44,9 @@ in
     cura-appimage
     ktailctl
     gparted-full
+    nvidia-container-toolkit
+    nvidia-docker
+    v4l2loopback
     (lib.hiPrio gpartedWrapper)
   ];
 

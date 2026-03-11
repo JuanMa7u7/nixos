@@ -5,6 +5,7 @@
     ./programs
     ./packages
     ./confs
+    ./services
     ./caelestia.nix
     ./hydenix.nix
   ];

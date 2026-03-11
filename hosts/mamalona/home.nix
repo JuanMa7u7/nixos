@@ -4,6 +4,8 @@
     ./hm
   ];
 
+  services.blucast.enable = true;
+
   home.sessionVariables = {
     STEAMLIBRARY = "/mnt/juegos-ssd/SteamLibrary";
     STEAMLIBRARY_SSD = "/mnt/juegos-ssd/SteamLibrary";
