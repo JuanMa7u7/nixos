@@ -1,14 +1,23 @@
 { pkgs, pkgs-edge, ... }:
 let
   stablePkgs = with pkgs; [
-    # --------------------------------------------------- // Gaming
-    gamemode # daemon and library for game optimisations
-    mangohud # system performance overlay
-    # gamescope # micro-compositor for gaming (Managed by play-nix on Ascension, added manually on Serenity)
-    lutris # gaming platform
-    sidequest # sideload apps and games to Oculus Quest
-    android-tools # android platform tools
-    protonup-ng # game launcher
+    gamemode
+    mangohud
+    lutris
+    sidequest
+    android-tools
+    protonup-ng
+    gamescope
+    protontricks
+    steam-run
+    vulkan-tools
+    winetricks
+    protonup-qt
+    mangojuice
+    openrgb-with-all-plugins
+    lsfg-vk
+    piper
+    libratbag
   ];
   edgePkgs = with pkgs-edge; [
   ];

@@ -1,26 +1,15 @@
-{ pkgs, pkgs-edge, ... }:
+{ pkgs, pkgs-edge, lib, ... }:
 let
   stablePkgs = with pkgs; [
     git-lfs
-
-
-    # k8s
     kubectl
     lens
     kubernetes-helm
-
-    #Cloud
     doctl
     ngrok
-
-    # Boot.dev
     bootdev-cli
-
-    # AI
     lmstudio
     n8n
-
-    # Tools
     aria2
     bat
     btop
@@ -47,38 +36,43 @@ let
     tree
     zoxide
     uutils-coreutils-noprefix
-
-    #DB
     sqlite
     sqlitebrowser
     mongodb-compass
     mongodb-tools
-
-
-    # langs
-    nodejs
-    # corepack
+    # nodejs
     gjs
     just
     bun
     cargo
     uv
     python3
-    go
+    # go
     gcc
     gnumake
     cmakeMinimal
     typescript
     eslint
-    # very important stuff
     neofetch
+    dbeaver-bin
+    go_1_26
+    libgcc
+    nodejs_20
+    openssl
+    opencode
+    pnpm_9
+    prisma
+    prisma-engines
+    turbo
+    tmux
+    vscode
+    flutter
+    direnv
   ];
   edgePkgs = with pkgs-edge; [
-    
     github-cli
     jetbrains-toolbox
     neovim
-    
   ];
 in
 {

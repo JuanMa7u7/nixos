@@ -1,50 +1,81 @@
-{ pkgs, pkgs-edge, pkgs-locked, inputs, ... }:
+{ pkgs, pkgs-edge, pkgs-locked, inputs, lib, ... }:
 let
   system = "x86_64-linux";
 
-  lockedPkgs = with pkgs-locked; [
-  ];
+  gpartedWrapper = pkgs.writeShellScriptBin "gparted" ''
+    exec pkexec --disable-internal-agent \
+      env \
+      DISPLAY="$DISPLAY" \
+      XAUTHORITY="${XAUTHORITY:-$HOME/.Xauthority}" \
+      GDK_BACKEND=x11 \
+      WAYLAND_DISPLAY= \
+      "${pkgs.gparted-full}/libexec/gpartedbin" "$@"
+  '';
+
   stablePkgs = with pkgs; [
+    _1password-cli
+    _1password-gui
     yazi
     eza
     kitty
-    firefox # browser
-    bottles # wine manager
-    brave # browser
-    chromium # browser
-    google-chrome # browser
+    firefox
+    bottles
+    brave
+    chromium
+    google-chrome
     gnome-disk-utility
-    # vesktop # discord client
-    pomodoro
+    cmatrix
+    ipfetch
     kdePackages.konsole
-    sunvox
+    kdePackages.kalarm
+    kdePackages.networkmanager-qt
+    neofetch
+    nyancat
     obsidian
     obs-studio
+    onlyoffice-desktopeditors
+    pomodoro
     rofi
+    sunvox
     typora
     transmission_4-gtk
     libreoffice
-    kdePackages.kalarm
-    gcalcli # google calendar
+    gcalcli
     todoist
     todoist-electron
-    signal-desktop # messaging client
-    zoom-us # video conferencing
+    signal-desktop
+    zoom-us
     zk
     gthumb
     capitaine-cursors-themed
+    telegram-desktop
+    thunderbird-bin
+    wasistlos
+    waypaper
+    waytrogen
+    x11vnc
+    swww
+    cura-appimage
+    ktailctl
+    gparted-full
+    nvidia-container-toolkit
+    nvidia-docker
+    # v4l2loopback
   ];
-  edgePkgs = with pkgs-edge; [
 
+  edgePkgs = with pkgs-edge; [
     vesktop
+  ];
+
+  lockedPkgs = with pkgs-locked; [
   ];
 in
 {
   home.packages = stablePkgs ++ edgePkgs ++ lockedPkgs ++ [
-    inputs.zen-browser.packages."${system}".beta # zen-beta
+    inputs.zen-browser.packages."${system}".beta
+    (lib.hiPrio gpartedWrapper)
   ];
 
-  # Configure zen-beta as default browser
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
@@ -59,7 +90,6 @@ in
       "application/x-extension-xhtml" = "zen-beta.desktop";
       "application/x-extension-xht" = "zen-beta.desktop";
 
-      # all images to gthumb
       "image/jpeg" = [ "gthumb.desktop" ];
       "image/png" = [ "gthumb.desktop" ];
       "image/gif" = [ "gthumb.desktop" ];
@@ -74,7 +104,6 @@ in
       "image/webp" = [ "gthumb.desktop" ];
       "image/svg+xml" = [ "gthumb.desktop" ];
       
-      # Keep other existing defaults
       "application/javascript" = "nvim.desktop";
       "application/json" = "nvim.desktop";
       "application/x-shellscript" = "nvim.desktop";
@@ -94,4 +123,17 @@ in
     };
   };
 
+  xdg.desktopEntries.gparted = {
+    name = "GParted";
+    genericName = "Partition Editor";
+    comment = "Create, reorganize, and delete partitions";
+    exec = "gparted %f";
+    icon = "gparted";
+    terminal = false;
+    categories = [
+      "GNOME"
+      "System"
+      "Filesystem"
+    ];
+  };
 }

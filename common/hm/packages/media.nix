@@ -1,18 +1,17 @@
 { pkgs, pkgs-edge, ... }:
 let
   stablePkgs = with pkgs; [
-    # --------------------------------------------------- // Music
-    cava # audio visualizer
-    # spicetify-cli # cli to customize spotify client
-    # spotify # spotify client
+    cava
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
-    # Audio
     helvum
     easyeffects
     qjackctl
     rtaudio
-    # --------------------------------------------------- // Books
-    # calibre
+    gimp3-with-plugins
+    gnome-network-displays
+    miraclecast
+    nwg-look
+    vlc
   ];
   edgePkgs = with pkgs-edge; [
   ];
