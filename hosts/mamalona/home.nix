@@ -1,8 +1,6 @@
 { ... }:
 {
-  imports = [
-    ./hm
-  ];
+  imports = [];
 
   services.blucast.enable = true;
 

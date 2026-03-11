@@ -5,7 +5,7 @@
     enable = true;
     font = {
       name = "CaskaydiaCove NF";
-      size = 12;
+      size = 10;
     };
     settings = {
       term = "xterm-256color";

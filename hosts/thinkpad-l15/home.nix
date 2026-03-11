@@ -1,6 +1,4 @@
 { ... }:
 {
-  imports = [
-    ./hm
-  ];
+  imports = [];
 }
