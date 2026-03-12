@@ -80,6 +80,7 @@ in
         inputs.hydenix.homeModules.default
         ./hm
         ../hosts/${hostName}/home.nix
+        ../hosts/${hostName}/hm
       ];
     };
   };
