@@ -3,7 +3,7 @@
   imports = [
     ./git.nix
     ./tmux.nix
-    ./pass.nix
+    # ./pass.nix
     ./direnv.nix
     ./vscode.nix
     ./zsh.nix
@@ -18,6 +18,6 @@
     # ./pencil.nix  # TEMPORARILY DISABLED — hash mismatch on AppImage
     ./luban.nix
     ./real-video-enhancer.nix
-    ./xodus.nix
+    # ./xodus.nix
   ];
 }

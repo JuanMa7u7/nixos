@@ -63,6 +63,7 @@
     
     services.displayManager.sddm.enable = lib.mkForce false;
     services.displayManager.enable = lib.mkForce false;
+    services.greetd.enable = lib.mkForce false; # GPU is VFIO-bound here; no greeter possible
     services.xserver.enable = lib.mkForce false;
     services.xserver.videoDrivers = lib.mkForce [ ];
     hardware.nvidia.modesetting.enable = lib.mkForce false;

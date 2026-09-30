@@ -1,6 +1,16 @@
 { pkgs, ... }:
 {
-  imports = [ ./openrgb.nix ];
+  imports = [ ./openrgb.nix ./hyprland.nix ./fonts.nix ./upstream-compat.nix ];
+
+  # Prevent /boot from filling up again (see thinkpad-l15 2026-09-30: 511M
+  # EFI partition hit 100% on stale systemd-boot kernels + 100+ loader
+  # entries). Caps GRUB menu entries and garbage-collects weekly.
+  boot.loader.grub.configurationLimit = 10;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
 
   programs.zsh.enable = true;
 

@@ -46,7 +46,10 @@ let
     bun
     cargo
     uv
-    python3
+    # python3 removed: soymou/illogical-flake already provides a
+    # python3.withPackages env (programs.illogical-impulse); keeping plain
+    # python3 alongside it breaks home-manager buildEnv with:
+    #   conflicting subpath `bin/idle3.14'
     # go
     gcc
     gnumake

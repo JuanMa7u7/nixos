@@ -1,25 +1,13 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 {
+  # NOTE: Caelestia-era Hyprland dotfiles (.config/hypr/hyprland*,
+  # userprefs.conf, scheme/, scripts/, caelestia-colors, Wallpapers) were
+  # removed with the end-4 migration. Hypr config is owned by illogical-flake's
+  # activation copy of dots/.config/hypr (hyprland.lua + custom/); per-host
+  # fragments live in hosts/<host>/hm/host.nix. Do NOT re-add home.file
+  # entries under .config/hypr here — the upstream activation step
+  # (copyIllogicalImpulseConfigs) wipes them on every switch.
   home.file = {
-    ".config/hypr/hyprland" = {
-      source = ./hypr/hyprland;
-      recursive = true;
-    };
-
-    ".config/hypr/scripts" = {
-      source = ./hypr/scripts;
-      recursive = true;
-    };
-
-    ".config/hypr/scheme" = {
-      source = ./hypr/scheme;
-      recursive = true;
-    };
-
-    ".config/hypr/hyprland.conf" = {
-      source = ./hypr/hyprland.conf;
-    };
-
     ".config/zen" = {
       source = ./zen;
       recursive = true;
@@ -33,22 +21,6 @@
     ".config/fastfetch" = {
       source = ./fastfetch;
       recursive = true;
-    };
-
-    ".local/bin/caelestia-colors" = {
-      source = ./scripts/caelestia-colors;
-      executable = true;
-    };
-
-    "Pictures/Wallpapers".source = ./caelestia/wallpapers;
-
-    ".config/hypr/userprefs.conf" = lib.mkForce {
-      text = ''
-        exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-        exec-once = ${pkgs.xhost}/bin/xhost +SI:localuser:root
-
-        source = ~/.config/hypr/hyprland.conf
-      '';
     };
   };
 

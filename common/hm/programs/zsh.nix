@@ -14,13 +14,7 @@ in
       enable = false;
     };
     initContent = ''
-      # Load Caelestia terminal colors if available
-      cat ~/.local/state/caelestia/sequences.txt 2>/dev/null
-
-      # Sync Caelestia colors to Kitty, Hyprland, and Starship
-      if [ -f "$HOME/.local/bin/caelestia-colors" ]; then
-        eval "$($HOME/.local/bin/caelestia-colors 2>/dev/null)" || true
-      fi
+      # end-4/matugen manages dynamic theming; no shell color hooks needed.
 
       # Use dynamic Starship config if it exists
       if [ -f "$HOME/.config/starship-dynamic.toml" ]; then

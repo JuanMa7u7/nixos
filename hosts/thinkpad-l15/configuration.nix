@@ -2,7 +2,16 @@
 {
   # imports = [ ./system.nix ];
 
-  boot.loader.grub.devices = [ "/dev/sda" ];
+  # ThinkPad L15 is NVMe-only (no /dev/sda) with a GPT + EFI system
+  # partition, previously booted via systemd-boot. Install GRUB as the EFI
+  # removable fallback: no NVRAM writes, no efibootmgr dependency, boots via
+  # EFI/BOOT/BOOTX64.EFI regardless of stale firmware entries.
+  boot.loader.grub = {
+    enable = true;
+    devices = [ "nodev" ];
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
 
   hardware.graphics = {
     enable = true;

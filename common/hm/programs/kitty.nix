@@ -23,21 +23,9 @@
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
     };
-    extraConfig = ''
-      # Dynamic colors loaded from Caelestia theme
-      include ./colours.conf
-    '';
   };
 
   home.sessionVariables = {
     KITTY_LISTEN_ON = "unix:/tmp/kitty-juan";
-  };
-
-  home.activation = {
-    generateKittyColors = ''
-      if [ -f "$HOME/.local/bin/caelestia-colors" ]; then
-        $HOME/.local/bin/caelestia-colors > /dev/null 2>&1 || true
-      fi
-    '';
   };
 }

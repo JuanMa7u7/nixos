@@ -1,11 +1,11 @@
 { inputs, ... }:
 {
   imports = [
-    inputs.caelestia-shell.homeManagerModules.default
+    inputs.illogical-flake.homeManagerModules.default
+    ./illogical.nix
     ./programs
     ./packages
     ./confs
     ./services
-    ./caelestia.nix
   ];
 }

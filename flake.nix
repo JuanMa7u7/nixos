@@ -6,13 +6,8 @@
 
     home-manager.url = "github:nix-community/home-manager";
 
-    caelestia-shell = {
-      url = "github:JuanMa7u7/caelestia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    caelestia-cli = {
-      url = "github:JuanMa7u7/cli";
+    illogical-flake = {
+      url = "github:soymou/illogical-flake?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
