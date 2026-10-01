@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   programs.illogical-impulse = {
     enable = true;
@@ -7,6 +7,18 @@
       kitty.enable = false; # repo owns kitty via common/hm/programs/kitty.nix (see restore below)
       starship.enable = false; # repo owns starship via common/hm/programs/starship.nix (see override below)
     };
+  };
+
+  # Cursor, declaratively: end-4 runs `hyprctl setcursor Bibata-Modern-Classic 24`
+  # at startup, which silently falls back to X defaults if the theme is not
+  # installed. home.pointerCursor installs it and covers GTK/XWayland apps.
+  # Change name/size here, then `hyprctl setcursor <Name> <Size>` if needed.
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
   };
 
   # The flake sets programs.starship.enable=false when
