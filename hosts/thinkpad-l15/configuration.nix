@@ -15,11 +15,23 @@
 
   hardware.graphics = {
     enable = true;
+    enable32Bit = true; # Steam/Proton 32-bit titles
     extraPackages = with pkgs; [
       libva-vdpau-driver
       libvdpau-va-gl
     ];
   };
+
+  # Light gaming: Steam + compat tooling (heavier stack — gamescope session,
+  # firewall openings — stays mamalona-only). Library defaults to
+  # ~/.steam/steam via common/hm/confs (STEAMLIBRARY).
+  programs.steam = {
+    enable = true;
+    protontricks.enable = true;
+    extest.enable = true; # virtual controller for Steam Input (xpadneo is system-wide)
+  };
+
+  programs.gamemode.enable = true;
 
   zramSwap = {
     enable = true;

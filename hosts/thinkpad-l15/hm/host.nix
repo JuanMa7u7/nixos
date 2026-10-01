@@ -13,6 +13,8 @@
     $DRY_RUN_CMD rm -f "$HOME/.config/hypr/custom/monitors.conf" "$HOME/.config/hypr/custom/keybinds-extra.conf"
     cat ${./host/monitors.lua} >> "$HOME/.config/hypr/custom/general.lua"
     cat ${./host/keybinds.lua} >> "$HOME/.config/hypr/custom/keybinds.lua"
-    $DRY_RUN_CMD chmod u+w "$HOME/.config/hypr/custom/general.lua" "$HOME/.config/hypr/custom/keybinds.lua"
+    # execs.lua is fully owned (end-4 default is empty): overwrite, don't append
+    $DRY_RUN_CMD cp -f ${./host/execs.lua} "$HOME/.config/hypr/custom/execs.lua"
+    $DRY_RUN_CMD chmod u+w "$HOME/.config/hypr/custom/general.lua" "$HOME/.config/hypr/custom/keybinds.lua" "$HOME/.config/hypr/custom/execs.lua"
   '';
 }

@@ -14,6 +14,7 @@
   # installed. home.pointerCursor installs it and covers GTK/XWayland apps.
   # Change name/size here, then `hyprctl setcursor <Name> <Size>` if needed.
   home.pointerCursor = {
+    enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 24;
@@ -69,8 +70,13 @@
   home.activation.restoreHmManagedConfigs =
     lib.hm.dag.entryAfter [ "copyIllogicalImpulseConfigs" ] ''
       ${lib.optionalString config.programs.kitty.enable ''
-        $DRY_RUN_CMD cp -f ${config.xdg.configFile."kitty/kitty.conf".source} "$HOME/.config/kitty/kitty.conf"
-        $DRY_RUN_CMD chmod u+w "$HOME/.config/kitty/kitty.conf"
+        # cmp guard: HM's linkGeneration may already have linked dest to this
+        # exact source (same inode content) — bare `cp -f` errors out as
+        # "same file" and fails the whole switch (seen 2026-10-01).
+        if ! cmp -s ${config.xdg.configFile."kitty/kitty.conf".source} "$HOME/.config/kitty/kitty.conf"; then
+          $DRY_RUN_CMD cp -f ${config.xdg.configFile."kitty/kitty.conf".source} "$HOME/.config/kitty/kitty.conf"
+          $DRY_RUN_CMD chmod u+w "$HOME/.config/kitty/kitty.conf"
+        fi
       ''}
       # Caelestia-era leftover: zsh used to prefer this file via STARSHIP_CONFIG.
       # Nothing regenerates it (caelestia-colors is gone); remove once, keep gone.
