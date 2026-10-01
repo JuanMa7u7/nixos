@@ -15,11 +15,8 @@ in
     };
     initContent = ''
       # end-4/matugen manages dynamic theming; no shell color hooks needed.
-
-      # Use dynamic Starship config if it exists
-      if [ -f "$HOME/.config/starship-dynamic.toml" ]; then
-        export STARSHIP_CONFIG="$HOME/.config/starship-dynamic.toml"
-      fi
+      # NOTE: the old Caelestia-era starship-dynamic.toml override was removed:
+      # STARSHIP_CONFIG now falls through to ~/.config/starship.toml (repo config).
 
       # Helpful aliases
       alias c='clear' # clear terminal

@@ -5,7 +5,7 @@
     enable = true;
     font = {
       name = "CaskaydiaCove NF";
-      size = 10;
+      size = 12;
     };
     settings = {
       term = "xterm-256color";
@@ -22,7 +22,15 @@
 
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
+      tab_title_template = "🗿 {title}";
     };
+    # end-4 dynamic Material colors: quickshell/matugen regenerates this file
+    # on every wallpaper switch and SIGUSR1-reloads running kitties, so new
+    # and live terminals follow the theme. First, like upstream's own config.
+    # (If quickshell hasn't generated it yet, kitty logs a warning and starts.)
+    extraConfig = ''
+      include ~/.local/state/quickshell/user/generated/terminal/kitty-theme.conf
+    '';
   };
 
   home.sessionVariables = {
