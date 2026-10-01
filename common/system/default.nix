@@ -12,6 +12,8 @@
     options = "--delete-older-than 14d";
   };
 
+  # Local time for both hosts (was defaulting to UTC).
+  time.timeZone = "America/Mexico_City";
   programs.zsh.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

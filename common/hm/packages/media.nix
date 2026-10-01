@@ -15,7 +15,7 @@ let
     mpc-qt
     obs-studio
     sunvox
-    image-roll
+    gthumb
     video-downloader
     gpu-screen-recorder
   ];
