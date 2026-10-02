@@ -16,5 +16,6 @@ hl.workspace_rule({ workspace = "7", monitor = "DP-1", persistent = true })
 hl.monitor({ output = "desc:BNQ BenQ GW2480 53L0006101Q", mode = "1920x1080@60", position = "0x1568", scale = 1, transform = 1 })
 hl.workspace_rule({ workspace = "8", monitor = "HDMI-A-1", default = true, persistent = true })
 hl.workspace_rule({ workspace = "9", monitor = "HDMI-A-1", persistent = true })
+hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-1", persistent = true })
 -- 4: mirror of primary
 hl.monitor({ output = "desc:Samsung Electric Company SAMSUNG 0x00000001", mode = "1920x1080@60", position = "1080x1413", scale = 1, mirror = "DP-2" })

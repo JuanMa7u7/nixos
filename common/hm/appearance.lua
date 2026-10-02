@@ -5,8 +5,8 @@
 -- for its zoom-toggle binds), so nothing else in decoration is touched.
 hl.config({
     decoration = {
-        active_opacity = 0.9,
-        inactive_opacity = 0.9,
+        active_opacity = 0.95,
+        inactive_opacity = 0.95,
         fullscreen_opacity = 1.0,
     },
 })

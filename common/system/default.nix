@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [ ./openrgb.nix ./hyprland.nix ./fonts.nix ./upstream-compat.nix ];
+  imports = [ ./openrgb.nix ./hyprland.nix ./fonts.nix ./upstream-compat.nix ./audio.nix ];
 
   # Prevent /boot from filling up again (see thinkpad-l15 2026-09-30: 511M
   # EFI partition hit 100% on stale systemd-boot kernels + 100+ loader
