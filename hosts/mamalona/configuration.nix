@@ -2,7 +2,20 @@
 {
   imports = [ ./system.nix ./vfio.nix ./virt.nix ];
 
-  boot.loader.grub.devices = [ "/dev/sda" ];
+  # Bootloader: this machine EFI-boots via systemd-boot remnants (proven by a
+  # booted cmdline referencing \EFI\nixos\... paths); the GRUB-to-/dev/sda
+  # setup never owned the boot path, so GRUB menu updates were theater and the
+  # firmware kept defaulting to a stale July entry. Own systemd-boot instead:
+  # fresh entries, newest-first default, old ones pruned by configurationLimit.
+  # The orphaned GRUB MBR on /dev/sda stays as a fallback and is not touched.
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    grub.enable = false;
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 10;
+    };
+  };
 
   hardware.graphics = {
     enable = true;
