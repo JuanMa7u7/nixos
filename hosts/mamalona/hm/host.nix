@@ -13,6 +13,18 @@
     $DRY_RUN_CMD rm -f "$HOME/.config/hypr/custom/monitors.conf" "$HOME/.config/hypr/custom/keybinds-extra.conf"
     cat ${./host/monitors.lua} >> "$HOME/.config/hypr/custom/general.lua"
     cat ${./host/keybinds.lua} >> "$HOME/.config/hypr/custom/keybinds.lua"
+    # NVIDIA Wayland session env, mamalona-only. HM home.sessionVariables only
+    # reach login shells (~/.zprofile), NOT greetd-launched Hyprland sessions,
+    # so set them where the compositor guarantees them: custom/env.lua is
+    # sourced by hyprland.lua right after hyprland/env.lua and applies to the
+    # whole session. Kept in sync with home.sessionVariables in ../home.nix.
+    cat >> "$HOME/.config/hypr/custom/env.lua" <<'LUAEOF'
+-- nix-managed (hosts/mamalona/hm/host.nix): NVIDIA Wayland, mamalona-only
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("NVD_BACKEND", "direct")
+LUAEOF
     # execs.lua is fully owned (end-4 default is empty): overwrite, don't append
     $DRY_RUN_CMD cp -f ${./host/execs.lua} "$HOME/.config/hypr/custom/execs.lua"
     $DRY_RUN_CMD chmod u+w "$HOME/.config/hypr/custom/general.lua" "$HOME/.config/hypr/custom/keybinds.lua" "$HOME/.config/hypr/custom/execs.lua"
