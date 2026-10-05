@@ -77,6 +77,7 @@
     services.displayManager.sddm.enable = lib.mkForce false;
     services.displayManager.enable = lib.mkForce false;
     services.greetd.enable = lib.mkForce false; # GPU is VFIO-bound here; no greeter possible
+    systemd.services.og-xbox-boot-sound.enable = lib.mkForce false; # no audio stack on the host here either
     services.xserver.enable = lib.mkForce false;
     services.xserver.videoDrivers = lib.mkForce [ ];
     hardware.nvidia.modesetting.enable = lib.mkForce false;

@@ -1,0 +1,66 @@
+# og-xbox.script — Original Xbox boot animation for Plymouth (script plugin).
+#
+# Playback model (hybrid, no GetTime in this Plymouth — verified against the
+# shipped script/spinner theme sources):
+# - refresh_callback() advances frames in real time assuming the default
+#   ~30Hz script refresh: 2 frames per tick ~= 60fps. If the real refresh
+#   differs the clip just plays faster/slower, then holds the last frame.
+# - progress_callback() only ever jumps FORWARD to the boot-progress-mapped
+#   frame, so on slow boots the animation can never lag behind completion.
+# - quit_callback() parks on the final X logo for a clean handoff to greetd.
+# Frames are loaded on demand (one live Image at a time) — preloading all
+# ~623 full-HD frames would need gigabytes of RAM.
+
+Window.SetBackgroundTopColor (0, 0, 0);
+Window.SetBackgroundBottomColor (0, 0, 0);
+
+total_frames = 622;
+
+frame.sprite = Sprite ();
+frame.shown = -1;
+frame.tick = 0;
+
+fun show_frame (idx)
+  {
+    if (idx < 0)
+      idx = 0;
+    if (idx >= total_frames)
+      idx = total_frames - 1;
+    if (idx != frame.shown)
+      {
+        frame.shown = idx;
+        img = Image ("frame-" + (idx + 1) + ".png");
+        frame.sprite.SetImage (img);
+        frame.sprite.SetPosition (Window.GetX () + Window.GetWidth (0) / 2 - img.GetWidth () / 2,
+                                  Window.GetY () + Window.GetHeight (0) / 2 - img.GetHeight () / 2,
+                                  10000);
+      }
+  }
+
+fun refresh_callback ()
+  {
+    show_frame (Math.Int (frame.tick * 2));
+    frame.tick++;
+  }
+
+Plymouth.SetRefreshFunction (refresh_callback);
+
+fun progress_callback (duration, progress)
+  {
+    if (progress > 1)
+      progress = 1;
+    if (progress < 0)
+      progress = 0;
+    idx = Math.Int (progress * (total_frames - 1));
+    if (idx > frame.shown)
+      show_frame (idx);
+  }
+
+Plymouth.SetBootProgressFunction (progress_callback);
+
+fun quit_callback ()
+  {
+    show_frame (total_frames - 1);
+  }
+
+Plymouth.SetQuitFunction (quit_callback);

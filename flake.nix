@@ -71,8 +71,19 @@
         };
     in
     {
-      nixosConfigurations = {
-        thinkpad-l15 = mkHost {
+      packages.${system} = {
+        # Standalone build for measuring the theme without a full rebuild:
+        # nix build .#og-xbox-plymouth
+        og-xbox-plymouth =
+          (import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          }).callPackage ./packages/og-xbox-plymouth {
+            srcVideo = /home/juan_ma7u7/nixos/assets/boot.webm;
+          };
+      };
+
+      nixosConfigurations = {        thinkpad-l15 = mkHost {
           hostName = "thinkpad-l15";
           hardwareModules = [
             inputs.nixos-hardware.nixosModules.common-cpu-amd

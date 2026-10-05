@@ -1,10 +1,12 @@
 { pkgs, ... }:
 {
-  imports = [ ./openrgb.nix ./hyprland.nix ./fonts.nix ./upstream-compat.nix ./audio.nix ];
+  imports = [ ./openrgb.nix ./hyprland.nix ./fonts.nix ./upstream-compat.nix ./audio.nix ./plymouth.nix ];
 
   # Prevent /boot from filling up again (see thinkpad-l15 2026-09-30: 511M
   # EFI partition hit 100% on stale systemd-boot kernels + 100+ loader
   # entries). Caps GRUB menu entries and garbage-collects weekly.
+  # NOTE: plymouth.nix force-lowers both loaders to 3 entries to fit the
+  # 1080p60 og-xbox frame set in initrd (approved trade-off to keep 60fps).
   boot.loader.grub.configurationLimit = 10;
   nix.gc = {
     automatic = true;

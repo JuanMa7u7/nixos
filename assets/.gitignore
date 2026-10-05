@@ -1,0 +1,5 @@
+# Local-only boot video source (Microsoft IP, personal use).
+# Kept out of git; referenced by absolute path from common/system/plymouth.nix
+# because flakes ignore untracked files via relative paths.
+*.webm
+*.mp4

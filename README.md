@@ -30,9 +30,16 @@ Per-host Caelestia customization (monitor layout, gifs) lives under `hosts/<name
 - Shared modules should stay hardware-agnostic unless every host needs the same behavior.
 - Some legacy/unused modules are preserved under `common/hm/` as inactive references (e.g., `hydenix.nix`, `gh-repos.nix`, `opencode.nix`, and upstream Arch leftovers under `confs/`).
 
+## Boot splash (OG Xbox)
+
+- `common/system/plymouth.nix`: enables Plymouth with a custom `og-xbox` theme built from `assets/boot.webm` (1920x1080 @60fps, full clip) plus a systemd service playing the clip audio after the sound stack is up. Boot menus stay visible; the animation runs after entry selection.
+- `assets/boot.webm` is gitignored (Microsoft IP, local personal use) and referenced by absolute path, so rebuilds require `--impure` — use `./rebuild-mamalona.sh` / `./rebuild-thinkpad-l15.sh`.
+- 60fps trade-off: boot-entry retention is force-lowered to 3 (`configurationLimit`) to fit the ~81MB initrds on the small `/boot` partitions.
+- Preview without rebooting: `sudo plymouthd; sudo plymouth --show-splash; sleep 11; sudo plymouth --quit`.
+
 ## Common Commands
 
 ```bash
-sudo nixos-rebuild switch --flake .#thinkpad-l15
-sudo nixos-rebuild switch --flake .#mamalona
+./rebuild-thinkpad-l15.sh
+./rebuild-mamalona.sh
 ```
