@@ -18,7 +18,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.tuigreet} --time --remember --remember-user-session --cmd start-hyprland";
+        command = "${lib.getExe pkgs.tuigreet} --time --remember --remember-user-session --cmd start-hyprland --background matrix";
         user = "greeter";
       };
     };

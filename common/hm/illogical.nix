@@ -37,6 +37,17 @@
       $DRY_RUN_CMD sed -i 's/primary_paletteKeyColor/primaryPaletteKeyColor/g' "$HOME/.config/quickshell/ii/scripts/colors/generate_colors_material.py"
     '';
 
+  # Keep-awake ON by default: end-4 defaults Idle.inhibit to false
+  # (services/Idle.qml `inhibit: false` + Persistent.qml `idle.inhibit: false`)
+  # and Idle.qml resets to that default on every new Hyprland instance
+  # (reboot/login overwrites states.json), so a one-time toggle never sticks.
+  # Patch both defaults after the upstream copy so fresh logins start inhibited.
+  home.activation.keepAwakeByDefault =
+    lib.hm.dag.entryAfter [ "copyIllogicalImpulseConfigs" ] ''
+      $DRY_RUN_CMD sed -i 's/inhibit: false/inhibit: true/' "$HOME/.config/quickshell/ii/services/Idle.qml"
+      $DRY_RUN_CMD sed -i 's/property bool inhibit: false/property bool inhibit: true/' "$HOME/.config/quickshell/ii/modules/common/Persistent.qml"
+    '';
+
   # Shared app-variables override (terminal = kitty). end-4's keybinds load
   # custom/variables.lua after their own defaults, so this wins cleanly.
   # Deployed with cp (full ownership: the end-4 default file is empty).
