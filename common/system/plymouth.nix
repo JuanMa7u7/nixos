@@ -44,15 +44,25 @@ in
   # is still on screen. Fails open: a missing/muted card never blocks boot.
   systemd.services.og-xbox-boot-sound = {
     description = "Original Xbox boot animation audio";
-    after = [ "sound.target" ];
+    after = [ "sound.target" "pipewire.service" "wireplumber.service" ];
     before = [ "plymouth-quit.service" ];
     wantedBy = [ "sound.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.alsa-utils}/bin/aplay -q /etc/og-xbox-boot-audio.wav";
       RemainAfterExit = false;
       StandardOutput = "null";
       StandardError = "journal";
     };
+    script = ''
+      # Wait for any ALSA playback device to become available.
+      for i in 1 2 3 4 5 6 7 8 9 10 15 20; do
+        if ${pkgs.alsa-utils}/bin/aplay -l >/dev/null 2>&1; then
+          break
+        fi
+        ${pkgs.coreutils}/bin/sleep 0.5
+      done
+      # Best-effort: play once if possible; never block boot.
+      ${pkgs.alsa-utils}/bin/aplay -q /etc/og-xbox-boot-audio.wav || true
+    '';
   };
 }
