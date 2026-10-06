@@ -22,6 +22,12 @@
       source = ./fastfetch;
       recursive = true;
     };
+
+    # opencode global config — versioned, deployed as individual files so
+    # plugin-managed state (node_modules, secrets, notifier state) stays
+    # unmanaged in ~/.config/opencode.
+    ".config/opencode/opencode.jsonc".source = ./opencode/opencode.jsonc;
+    ".config/opencode/AGENTS.md".source = ./opencode/AGENTS.md;
   };
 
   home.sessionVariables = {

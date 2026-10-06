@@ -1,0 +1,57 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "@mohak34/opencode-notifier@latest",
+    "@plannotator/opencode@latest",
+    "opencode-openai-codex-auth",
+    "opencode-antigravity-auth@beta"
+  ],
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "--init",
+        "mcr.microsoft.com/playwright/mcp"
+      ],
+      "enabled": true
+    }
+  },
+  "agent": {
+    "plan": {
+      // "model": "opencode-go/deepseek-v4-pro"
+      "model": "opencode/mimo-v2.6-flash-free"
+    },
+    "build": {
+      // "model": "opencode-go/minimax-m2.7"
+      "model": "opencode/big-pickle"
+    },
+    "explore": {
+      // "model": "opencode-go/minimax-m2.7"
+      "model": "opencode/mimo-v2.6-flash-free"
+    }
+  },
+  "instructions": [
+    "./instructions/explorer.md"
+  ],
+  "permission": {
+    "read": {
+      "~/.config/opencode/get-shit-done/*": "allow"
+    },
+    "external_directory": {
+      "~/.config/opencode/get-shit-done/*": "allow"
+    }
+  }
+}
