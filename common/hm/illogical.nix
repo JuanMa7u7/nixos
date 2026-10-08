@@ -48,6 +48,15 @@
       $DRY_RUN_CMD sed -i 's/property bool inhibit: false/property bool inhibit: true/' "$HOME/.config/quickshell/ii/modules/common/Persistent.qml"
     '';
 
+  # Repo-owned record.sh: upstream's copy passes --audio="" to wf-recorder when
+  # pactl is unavailable, which aborts (core dump). Deploy our hardened copy
+  # after the upstream rm -rf + copy (same ordering hazard as the fragments).
+  home.activation.fixRecordScript =
+    lib.hm.dag.entryAfter [ "copyIllogicalImpulseConfigs" ] ''
+      $DRY_RUN_CMD cp -f ${./scripts/record.sh} "$HOME/.config/quickshell/ii/scripts/videos/record.sh"
+      $DRY_RUN_CMD chmod u+w "$HOME/.config/quickshell/ii/scripts/videos/record.sh"
+    '';
+
   # Shared app-variables override (terminal = kitty). end-4's keybinds load
   # custom/variables.lua after their own defaults, so this wins cleanly.
   # Deployed with cp (full ownership: the end-4 default file is empty).
