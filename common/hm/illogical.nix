@@ -76,6 +76,17 @@
       $DRY_RUN_CMD chmod u+w "$HOME/.config/hypr/custom/general.lua"
     '';
 
+  # EasyEffects is taken out of the default playback path. end-4 autostarts it
+  # in service mode with no preset, which only inserts an `easyeffects_sink`
+  # in front of every stream (extra latency + another failure point). Comment
+  # the autostart exec after the upstream copy and drop the XDG autostart entry.
+  # The package stays installed; remove this hook to re-enable it.
+  home.activation.disableEasyEffectsAutostart =
+    lib.hm.dag.entryAfter [ "copyIllogicalImpulseConfigs" ] ''
+      $DRY_RUN_CMD sed -i '/hl.exec_cmd("easyeffects --hide-window --service-mode")/s/^/-- /' "$HOME/.config/hypr/hyprland/execs.lua"
+      $DRY_RUN_CMD rm -f "$HOME/.config/autostart/com.github.wwmm.easyeffects.desktop"
+    '';
+
   # NOTE (recommended end-4): wayland.windowManager.hyprland is intentionally
   # NOT enabled. Hypr config is owned by illogical-flake's activation copy of
   # dots/.config/hypr (entry: ~/.config/hypr/hyprland.lua, user overrides in

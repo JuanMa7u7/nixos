@@ -15,6 +15,37 @@
   };
   services.pulseaudio.enable = false;
 
+  # Logitech G733 (USB 046d:0ab5) hardening. Two separate rules because the
+  # ALSA monitor applies `monitor.alsa.rules` to the card *device* and to each
+  # PCM *node* independently (device properties do not propagate to nodes):
+  #  - device rule: pin the standard "output:analog-stereo+input:mono-fallback"
+  #    profile. WirePlumber skips "pro-audio" during auto-selection; the pinned
+  #    pro-audio came from stale state in ~/.local/state/wireplumber.
+  #  - node rule: keep the wireless sink from suspending on idle and enlarge the
+  #    ALSA headroom so USB isochronous underruns are absorbed.
+  services.pipewire.wireplumber.extraConfig."51-logitech-g733" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          { "device.name" = "~alsa_card.*Logitech_G733.*"; }
+        ];
+        actions.update-props = {
+          "device.profile" = "output:analog-stereo+input:mono-fallback";
+        };
+      }
+      {
+        matches = [
+          { "node.name" = "~alsa_.*Logitech_G733.*"; }
+        ];
+        actions.update-props = {
+          "session.suspend-timeout-seconds" = 0;
+          "api.alsa.headroom" = 8192;
+          "api.alsa.period-size" = 1024;
+        };
+      }
+    ];
+  };
+
   security.rtkit.enable = true;
 
   # Persist ALSA mixer state across reboots (alsactl store/restore).

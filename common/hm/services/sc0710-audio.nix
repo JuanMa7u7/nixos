@@ -31,8 +31,9 @@ in
           pw-link -d "alsa_input.pci-0000_04_00.0.stereo-fallback:capture_FR" 2>/dev/null || true
 
           # Link sc0710 capture card directly to G733 headset speakers
-          pw-link "alsa_input.pci-0000_04_00.0.stereo-fallback:capture_FL" "alsa_output.usb-Logitech_G733_Gaming_Headset-00.pro-output-0:playback_AUX0" 2>/dev/null || true
-          pw-link "alsa_input.pci-0000_04_00.0.stereo-fallback:capture_FR" "alsa_output.usb-Logitech_G733_Gaming_Headset-00.pro-output-0:playback_AUX1" 2>/dev/null || true
+          # (standard analog-stereo profile; pro-output-0 AUX ports are gone)
+          pw-link "alsa_input.pci-0000_04_00.0.stereo-fallback:capture_FL" "alsa_output.usb-Logitech_G733_Gaming_Headset-00.analog-stereo:playback_FL" 2>/dev/null || true
+          pw-link "alsa_input.pci-0000_04_00.0.stereo-fallback:capture_FR" "alsa_output.usb-Logitech_G733_Gaming_Headset-00.analog-stereo:playback_FR" 2>/dev/null || true
 
           # Start ffmpeg dummy capture to keep sc0710 stream active (reads and discards)
           ffmpeg -f alsa -i hw:0 -f null - 2>/dev/null &
