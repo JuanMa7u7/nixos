@@ -18,11 +18,11 @@ let
     lsfg-vk
     piper
     libratbag
-    bottles
+    # bottles  # temporarily disabled - patool test issue
     prismlauncher
     dolphin-emu
-    pcsx2
-    rpcs3
+    # pcsx2  # temporarily disabled - FFmpeg API build failure
+    # rpcs3  # temporarily disabled - FFmpeg API build failure
     # shadps4
     inputs.trinity-launcher.packages.${pkgs.system}.default
     lsfg-vk

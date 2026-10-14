@@ -1,4 +1,4 @@
-{ inputs, hostName, pkgs, ... }:
+{ inputs, hostName, pkgs, lib, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
   pkgsEdge = import inputs.nixpkgs {
@@ -7,47 +7,12 @@ let
   };
 in
 {
-  networking.hostName = hostName;
-
   imports = [
-    inputs.hydenix.inputs.home-manager.nixosModules.home-manager
-    inputs.hydenix.nixosModules.default
+    inputs.home-manager.nixosModules.home-manager
     ./system
   ];
 
-  environment.sessionVariables = {
-    PRISMA_FMT_BINARY = "${pkgs.prisma-engines_6}/bin/prisma-fmt";
-    PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines_6}/bin/query-engine";
-    PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines_6}/lib/libquery_engine.node";
-    PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines_6}/bin/schema-engine";
-  };
-
-  boot.extraModprobeConfig = ''
-    options bluetooth disable_ertm=Y
-    options btusb enable_autosuspend=n
-  '';
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
-        FastConnectable = true;
-        JustWorksRepairing = "always";
-      };
-      Policy.AutoEnable = true;
-    };
-  };
-
-  hardware.xpadneo.enable = true;
-  services.blueman.enable = true;
-
-  users.users."juan_ma7u7" = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "docker" "games" ];
-    shell = pkgs.zsh;
-  };
+  networking.hostName = hostName;
 
   home-manager = {
     useGlobalPkgs = true;
@@ -76,34 +41,11 @@ in
 
     users."juan_ma7u7" = {
       imports = [
-        inputs.hydenix.homeModules.default
         ./hm
         ../hosts/${hostName}/home.nix
         ../hosts/${hostName}/hm
       ];
     };
-  };
-
-  hydenix = {
-    enable = true;
-    hostname = hostName;
-    timezone = "America/Mexico_City";
-    locale = "en_US.UTF-8";
-
-    boot = {
-      enable = true;
-      useSystemdBoot = true;
-      grubTheme = "Retroboot";
-      grubExtraConfig = "";
-      kernelPackages = pkgs.linuxPackages_zen;
-    };
-
-    gaming.enable = true;
-    hardware.enable = true;
-    network.enable = true;
-    nix.enable = true;
-    sddm.enable = true;
-    system.enable = true;
   };
 
   system.stateVersion = "25.05";

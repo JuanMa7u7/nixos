@@ -1,6 +1,6 @@
 { ... }:
 {
   imports = [
-    ./confs/default.nix
+    ./host.nix
   ];
 }

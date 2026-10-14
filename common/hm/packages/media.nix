@@ -14,9 +14,14 @@ let
     # vlc
     mpc-qt
     obs-studio
+    # pactl client only (no daemon; pipewire-pulse stays the server).
+    # Needed by end-4's record.sh getaudiooutput(); without it wf-recorder
+    # gets --audio="" and segfaults (PulseReader::init).
+    pulseaudio
     sunvox
-    image-roll
+    gthumb
     video-downloader
+    gpu-screen-recorder
   ];
   edgePkgs = with pkgs-edge; [
   ];

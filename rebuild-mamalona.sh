@@ -4,12 +4,11 @@ sudo echo "Rebuilding system 🗿"
 
 if [ "$1" != "-s" ]; then
     sudo echo "removing *.nixbak files"
-
     sudo find ~/ -name "*.nixbak" -type f -delete
 fi
 
-sudo nixos-rebuild switch --flake .#mamalona
+# --impure: allows the gitignored local assets/boot.webm (og-xbox
+# Plymouth theme, not committed to this public repo) via absolute path.
+sudo nixos-rebuild switch --flake .#mamalona --impure
 
-./common-rebuild-commands.sh
-
-notify-send "Mamalona" "Rebuild complete. Ready to roll 🗿🤙🏻"
+./common-rebuild-commands.sh "Mamalona"

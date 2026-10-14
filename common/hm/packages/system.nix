@@ -17,8 +17,6 @@ in
     gnome-disk-utility
     x11vnc
     ktailctl
-    nvidia-container-toolkit
-    nvidia-docker
   ] ++ [
     (lib.hiPrio gpartedWrapper)
   ];

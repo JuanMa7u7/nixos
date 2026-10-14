@@ -38,7 +38,7 @@ let
     uutils-coreutils-noprefix
     sqlite
     sqlitebrowser
-    mongodb-compass
+    # mongodb-compass  # temporarily disabled - nixpkgs issue
     mongodb-tools
     # nodejs
     gjs
@@ -46,7 +46,10 @@ let
     bun
     cargo
     uv
-    python3
+    # python3 removed: soymou/illogical-flake already provides a
+    # python3.withPackages env (programs.illogical-impulse); keeping plain
+    # python3 alongside it breaks home-manager buildEnv with:
+    #   conflicting subpath `bin/idle3.14'
     # go
     gcc
     gnumake
@@ -56,10 +59,10 @@ let
     dbeaver-bin
     go_1_26
     libgcc
-    nodejs_20
+    nodejs_22
     openssl
     opencode
-    pnpm_9
+    pnpm_10
     prisma
     prisma-engines
     turbo
@@ -67,6 +70,7 @@ let
     vscode
     flutter
     direnv
+    tabularis
   ];
   edgePkgs = with pkgs-edge; [
     github-cli

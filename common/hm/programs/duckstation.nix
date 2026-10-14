@@ -2,11 +2,11 @@
 
 let
   pname = "duckstation";
-  version = "0.1-10998";
+  version = "0.1-11295";
 
   src = pkgs.fetchurl {
     url = "https://github.com/stenzek/duckstation/releases/download/v${version}/DuckStation-x64.AppImage";
-    hash = "sha256:b204886bb498ede1a290215fc2efb521c0c2f26b964788df697b4fc2cb3f7f7b";
+    hash = "sha256:b35fc76bb3cace5278aff1993593eed3cef21c960c33a5d95aee5251126e87e1";
   };
 
   icon = pkgs.fetchurl {

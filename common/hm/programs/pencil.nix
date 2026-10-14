@@ -6,7 +6,7 @@ let
 
   src = pkgs.fetchurl {
     url = "https://www.pencil.dev/download/Pencil-linux-x86_64.AppImage";
-    hash = "sha256-FDH2HXzjEppczp91cdzp/mtMGTNzAww6AjigWTcTqXg=";
+    hash = "sha256-GzLLJyglbf5H5F+Ingxqdq06fD3JFCPLjreX3JJ9AFs=";
   };
 
   appimageContents = pkgs.appimageTools.extractType2 {

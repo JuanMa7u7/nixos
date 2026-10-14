@@ -4,15 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    hydenix.url = "github:richen604/hydenix";
+    home-manager.url = "github:nix-community/home-manager";
 
-    caelestia-shell = {
-      url = "github:JuanMa7u7/caelestia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    caelestia-cli = {
-      url = "github:JuanMa7u7/cli";
+    illogical-flake = {
+      url = "github:soymou/illogical-flake?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,6 +22,15 @@
 
     # Launcher for Minecraft Bedrock Edition (Codeberg)
     trinity-launcher.url = "git+https://codeberg.org/javiercplus/Trinity-Launcher-NIXOS";
+
+    # Elgato 4K60 Pro capture card driver
+    sc0710.url = "github:Nakildias/sc0710";
+
+    # Xodus Gaming — Xbox PC game migration to Linux
+    xodus = {
+      url = "github:xodus-gaming/xodus";
+      flake = false;
+    };
   };
 
   outputs = inputs:
@@ -43,14 +47,14 @@
         lib.nixosSystem {
           inherit system;
 
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-            config = {
-              allowUnfree = true;
-              permittedInsecurePackages = [ "nodejs-20.20.2" "nodejs-slim-20.20.2" ];
-            };
-            overlays = [ inputs.hydenix.overlays.default ];
-          };
+           pkgs = import inputs.nixpkgs {
+             inherit system;
+             config = {
+               allowUnfree = true;
+                permittedInsecurePackages = [ "nodejs-22.12.0" "nodejs-slim-22.12.0" ];
+             };
+              overlays = [ ];
+           };
 
           specialArgs = {
             inherit hostName inputs;
@@ -67,22 +71,34 @@
         };
     in
     {
-      nixosConfigurations = {
-        thinkpad-l15 = mkHost {
+      packages.${system} = {
+        # Standalone build for measuring the theme without a full rebuild:
+        # nix build .#og-xbox-plymouth
+        og-xbox-plymouth =
+          (import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          }).callPackage ./packages/og-xbox-plymouth {
+            srcVideo = /home/juan_ma7u7/nixos/assets/boot.webm;
+          };
+      };
+
+      nixosConfigurations = {        thinkpad-l15 = mkHost {
           hostName = "thinkpad-l15";
           hardwareModules = [
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd
+            inputs.nixos-hardware.nixosModules.common-cpu-amd
+            inputs.nixos-hardware.nixosModules.common-pc
+            inputs.nixos-hardware.nixosModules.common-pc-ssd
           ];
         };
 
         mamalona = mkHost {
           hostName = "mamalona";
           hardwareModules = [
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+            inputs.nixos-hardware.nixosModules.common-pc
+            inputs.nixos-hardware.nixosModules.common-pc-ssd
+            inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+            inputs.sc0710.nixosModules.default
           ];
         };
       };

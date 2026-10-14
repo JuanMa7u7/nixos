@@ -1,0 +1,3 @@
+#!/run/current-system/sw/bin/bash
+
+virsh -c "qemu:///system?socket=/var/run/libvirt/libvirt-sock" attach-device win11-vm1-singlegpu <(echo "<hostdev mode='subsystem' type='usb'><source><vendor id='0x0951'/><product id='0x16df'/></source></hostdev>") && virsh -c "qemu:///system?socket=/var/run/libvirt/libvirt-sock" attach-device win11-vm1-singlegpu <(echo "<hostdev mode='subsystem' type='usb'><source><vendor id='0x1532'/><product id='0x0e03'/></source></hostdev>") && virsh -c "qemu:///system?socket=/var/run/libvirt/libvirt-sock" attach-device win11-vm1-singlegpu <(echo "<hostdev mode='subsystem' type='usb'><source><vendor id='0x046d'/><product id='0x0ab5'/></source></hostdev>")

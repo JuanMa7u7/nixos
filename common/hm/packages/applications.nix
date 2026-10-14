@@ -4,6 +4,8 @@ let
     yazi
     eza
     karere
+    kdePackages.dolphin # end-4's blessed file manager: ships dolphinrc + kdeglobals + kde-material-you-colors integration
+    kdePackages.ark # archive manager (mime default for compressed files)
     kdePackages.kalarm
     kdePackages.networkmanager-qt
   ];
