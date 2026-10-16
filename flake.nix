@@ -38,11 +38,16 @@
       system = "x86_64-linux";
       lib = inputs.nixpkgs.lib;
 
+      # mkHost is the single entry point for every host. withHomeManager
+      # defaults to true so existing desktop hosts keep their user config;
+      # the headless homelab host opts out entirely (no home-manager
+      # evaluation, no hosts/<name>/home.nix + hm/ files required).
       mkHost =
         {
           hostName,
           hardwareModules ? [ ],
           extraModules ? [ ],
+          withHomeManager ? true,
         }:
         lib.nixosSystem {
           inherit system;
@@ -57,7 +62,7 @@
            };
 
           specialArgs = {
-            inherit hostName inputs;
+            inherit hostName inputs withHomeManager;
           };
 
           modules =
@@ -100,6 +105,16 @@
             inputs.nixos-hardware.nixosModules.common-gpu-nvidia
             inputs.sc0710.nixosModules.default
           ];
+        };
+
+        # Headless homelab server (HP Pavilion dm1 / AMD E-350, then a
+        # ThinkCentre/EliteDesk mini PC). No desktop stack, no home-manager.
+        # The whole server stack lives in common/server/ so desktop hosts
+        # are completely unaffected.
+        homelab = mkHost {
+          hostName = "homelab";
+          withHomeManager = false;
+          extraModules = [ ./common/server ];
         };
       };
     };

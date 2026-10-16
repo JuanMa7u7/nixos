@@ -1,4 +1,4 @@
-{ inputs, hostName, pkgs, lib, ... }:
+{ inputs, hostName, pkgs, lib, withHomeManager ? true, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
   pkgsEdge = import inputs.nixpkgs {
@@ -14,7 +14,10 @@ in
 
   networking.hostName = hostName;
 
-  home-manager = {
+  # Disabled for headless hosts (e.g. homelab) via mkHost's withHomeManager
+  # flag: skips all user/home-manager evaluation entirely, so hosts/<name>/
+  # home.nix and hm/ are not required for them. Desktop hosts default to true.
+  home-manager = lib.mkIf withHomeManager {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "hm-bak";
