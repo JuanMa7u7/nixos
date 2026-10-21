@@ -19,6 +19,7 @@
     ./luban.nix
     ./real-video-enhancer.nix
     ./quiver-launcher.nix
+    ./xodus-nexus.nix
     # ./xodus.nix
   ];
 }
