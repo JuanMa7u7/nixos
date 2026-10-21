@@ -18,6 +18,7 @@
     # ./pencil.nix  # TEMPORARILY DISABLED — hash mismatch on AppImage
     ./luban.nix
     ./real-video-enhancer.nix
+    ./xodus-nexus.nix
     # ./xodus.nix
   ];
 }
