@@ -37,6 +37,12 @@ Per-host Caelestia customization (monitor layout, gifs) lives under `hosts/<name
 - 60fps trade-off: boot-entry retention is force-lowered to 3 (`configurationLimit`) to fit the ~81MB initrds on the small `/boot` partitions.
 - Preview without rebooting: `sudo plymouthd; sudo plymouth --show-splash; sleep 11; sudo plymouth --quit`.
 
+## Secret Service / keyring
+
+- `common/system/keyring.nix`: runs the gnome-keyring daemon (the Secret Service provider) and wires `pam_gnome_keyring.so` into `/etc/pam.d/login`.
+- `common/hm/services/keyring.nix`: systemd user service that makes sure the session owns an **unlocked default collection**. greetd never hands the login password to the PAM session stack, so the daemon starts without a password and no keyring is ever created; apps that persist credentials (Xodus Nexus Microsoft sign-in) then fail with *"The system keyring could not be accessed. Check that it is running and unlocked."* even though `org.freedesktop.secrets` is running. The service creates one empty, passwordless collection in `~/.local/share/keyrings` when none exists and is a no-op afterwards (an existing, possibly password-protected, wallet is never touched).
+- The collection file persists, so the service only ever does real work once per keyring directory. Inspect the current state with `busctl --user call org.freedesktop.secrets /org/freedesktop/secrets org.freedesktop.Secret.Service ReadAlias s default`.
+
 ## Common Commands
 
 ```bash
