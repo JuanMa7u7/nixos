@@ -79,6 +79,7 @@
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
+    daemon.settings.dns = [ "1.1.1.1" "8.8.8.8" ];
   };
 
   environment.systemPackages = with pkgs; [
