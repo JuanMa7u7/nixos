@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "opencode-go/gpt-6-luna",
   "plugin": [
     "@mohak34/opencode-notifier@latest",
     "@plannotator/opencode@latest",
@@ -27,20 +28,39 @@
         "mcr.microsoft.com/playwright/mcp"
       ],
       "enabled": true
+    },
+    "freehire": {
+      "type": "remote",
+      "url": "https://freehire.me/api/v1/mcp"
     }
   },
   "agent": {
     "plan": {
-      // "model": "opencode-go/deepseek-v4-pro"
-      "model": "opencode/mimo-v2.6-flash-free"
+      "model": "opencode-go/deepseek-v4-pro",
+      "variant": "max"
     },
     "build": {
-      // "model": "opencode-go/minimax-m2.7"
-      "model": "opencode/big-pickle"
+      "model": "opencode-go/gpt-6-luna",
+      "variant": "high"
+    },
+    "general": {
+      "model": "opencode-go/gpt-6-luna",
+      "variant": "high"
     },
     "explore": {
-      // "model": "opencode-go/minimax-m2.7"
-      "model": "opencode/mimo-v2.6-flash-free"
+      "model": "opencode-go/mimo-v2.6-flash"
+    },
+    "title": {
+      "model": "opencode-go/gpt-6-luna",
+      "variant": "none"
+    },
+    "summary": {
+      "model": "opencode-go/gpt-6-luna",
+      "variant": "none"
+    },
+    "compaction": {
+      "model": "opencode-go/gpt-6-luna",
+      "variant": "low"
     }
   },
   "instructions": [
