@@ -148,7 +148,6 @@ let
     export PROTON_NO_ESYNC=1
     export PROTON_NO_FSYNC=1
     export SDL_VIDEODRIVER=wayland,x11
-    export VK_ICD_FILENAMES=/etc/vulkan/icd.d/radeon_icd.x86_64.json:/etc/vulkan/icd.d/radeonsi_icd.x86_64.json
     exec ${xodusNexus}/bin/${pname} --no-sandbox "$@"
   '';
 in
