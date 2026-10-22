@@ -21,6 +21,7 @@
     ./quiver-launcher.nix
     ./filee.nix
     ./xodus-nexus.nix
+    ./piik.nix
     ./owly.nix
     # ./xodus.nix
   ];
