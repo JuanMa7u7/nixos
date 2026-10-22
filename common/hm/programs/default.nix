@@ -22,6 +22,7 @@
     ./filee.nix
     ./disktree.nix
     ./xodus-nexus.nix
+    ./comfyui.nix
     ./piik.nix
     ./owly.nix
     # ./xodus.nix
