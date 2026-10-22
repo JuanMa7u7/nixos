@@ -24,6 +24,7 @@
     ./xodus-nexus.nix
     ./comfyui.nix
     ./locally-uncensored.nix
+    ./motrix.nix
     ./piik.nix
     ./owly.nix
     # ./xodus.nix
