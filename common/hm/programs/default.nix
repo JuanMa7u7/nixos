@@ -20,6 +20,7 @@
     ./real-video-enhancer.nix
     ./quiver-launcher.nix
     ./filee.nix
+    ./disktree.nix
     ./xodus-nexus.nix
     ./piik.nix
     ./owly.nix
