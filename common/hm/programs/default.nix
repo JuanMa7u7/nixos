@@ -25,6 +25,7 @@
     ./comfyui.nix
     ./locally-uncensored.nix
     ./motrix.nix
+    ./pinokio.nix
     ./piik.nix
     ./owly.nix
     # ./xodus.nix
