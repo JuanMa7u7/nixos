@@ -1,6 +1,15 @@
 { pkgs, ... }:
 {
-  imports = [ ./openrgb.nix ./hyprland.nix ./fonts.nix ./upstream-compat.nix ./audio.nix ./plymouth.nix ./keyring.nix ];
+  imports = [
+    ./openrgb.nix
+    ./hyprland.nix
+    ./fonts.nix
+    ./upstream-compat.nix
+    ./audio.nix
+    ./plymouth.nix
+    ./keyring.nix
+    ./owly.nix
+  ];
 
   # Prevent /boot from filling up again (see thinkpad-l15 2026-09-30: 511M
   # EFI partition hit 100% on stale systemd-boot kernels + 100+ loader
@@ -75,6 +84,10 @@
       drivers = with pkgs; [ gutenprint ];
     };
   };
+
+  services.owly.enable = true;
+  # MT7922/RZ616 (mt7921e, PCI ID 14c3:0616) requires Owly's opt-in.
+  services.owly.settings.allow_untested = true;
 
   virtualisation.docker = {
     enable = true;
