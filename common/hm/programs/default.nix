@@ -23,6 +23,7 @@
     ./disktree.nix
     ./xodus-nexus.nix
     ./comfyui.nix
+    ./locally-uncensored.nix
     ./piik.nix
     ./owly.nix
     # ./xodus.nix
