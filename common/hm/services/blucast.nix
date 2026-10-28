@@ -17,7 +17,7 @@ in
     xdg.desktopEntries.blucast = {
       name = "BluCast";
       comment = "AI-Powered Virtual Camera";
-      exec = "/home/juan_ma7u7/.local/bin/blucast";
+      exec = "${config.home.homeDirectory}/.local/bin/blucast";
       icon = "camera-video";
       terminal = false;
       categories = [ "Video" "AudioVideo" ];

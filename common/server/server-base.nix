@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, userName, ... }:
 {
   # ---------------------------------------------------------------------------
   # Headless base
@@ -47,7 +47,7 @@
     };
   };
 
-  users.users.juan_ma7u7.openssh.authorizedKeys.keys = [
+  users.users.${userName}.openssh.authorizedKeys.keys = [
     # >>> TODO(USER): REPLACE with your real public key BEFORE first deploy. <<<
     # Generate one with:  ssh-keygen -t ed25519 -C "juanma@homelab"
     # then paste the single line from ~/.ssh/id_ed25519.pub here. Until you do,

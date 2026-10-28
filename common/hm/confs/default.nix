@@ -1,12 +1,10 @@
 { lib, ... }:
 {
-  # NOTE: Caelestia-era Hyprland dotfiles (.config/hypr/hyprland*,
-  # userprefs.conf, scheme/, scripts/, caelestia-colors, Wallpapers) were
-  # removed with the end-4 migration. Hypr config is owned by illogical-flake's
-  # activation copy of dots/.config/hypr (hyprland.lua + custom/); per-host
-  # fragments live in hosts/<host>/hm/host.nix. Do NOT re-add home.file
-  # entries under .config/hypr here — the upstream activation step
-  # (copyIllogicalImpulseConfigs) wipes them on every switch.
+  # Hyprland configuration is owned by illogical-flake's activation copy of
+  # dots/.config/hypr (hyprland.lua + custom/); shared and per-host fragments
+  # live in common/hm/*.lua and hosts/<host>/hm/host/*.lua. Do not add
+  # home.file entries under .config/hypr here: copyIllogicalImpulseConfigs
+  # replaces that tree on every switch.
   home.file = {
     ".config/zen" = {
       source = ./zen;

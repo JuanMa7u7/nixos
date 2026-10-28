@@ -11,13 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    nixarr.url = "github:rasmus-kirk/nixarr";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Launcher for Minecraft Bedrock Edition (Codeberg)
@@ -36,6 +30,7 @@
   outputs = inputs:
     let
       system = "x86_64-linux";
+      userName = "juan_ma7u7";
       lib = inputs.nixpkgs.lib;
 
       # mkHost is the single entry point for every host. withHomeManager
@@ -62,7 +57,7 @@
            };
 
           specialArgs = {
-            inherit hostName inputs withHomeManager;
+            inherit hostName inputs withHomeManager userName;
           };
 
           modules =
@@ -84,7 +79,7 @@
             inherit system;
             config.allowUnfree = true;
           }).callPackage ./packages/og-xbox-plymouth {
-            srcVideo = /home/juan_ma7u7/nixos/assets/boot.webm;
+            srcVideo = ./assets/boot.webm;
           };
       };
 

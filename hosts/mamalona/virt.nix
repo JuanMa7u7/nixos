@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  userName,
   ...
 }:
 
@@ -82,7 +83,7 @@
   ];
 
   # Añadir tu usuario a los grupos de gestión de la suite
-  users.users.juan_ma7u7.extraGroups = [ "libvirtd" "qemu-libvirtd" "kvm" "audio"];
+  users.users.${userName}.extraGroups = [ "libvirtd" "qemu-libvirtd" "kvm" "audio"];
 
   # Permitir conexiones de red para VNCViewer en el firewall local
   networking.firewall.allowedTCPPorts = [ 5900 ];

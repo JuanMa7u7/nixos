@@ -1,10 +1,8 @@
 { pkgs, lib, ... }:
 let
-  # NOTE: absolute path (not ../.. relative) is deliberate. assets/boot.webm
-  # is gitignored (Microsoft IP, local personal use only) and flakes only see
-  # git-tracked files via relative paths — an absolute path literal is still
-  # copied to the store and works.
-  videoPath = /home/juan_ma7u7/nixos/assets/boot.webm;
+  # Tracked flake input; Nix copies it into the store with the derivation.
+  # The asset is Microsoft IP and retained for local personal use.
+  videoPath = ../../assets/boot.webm;
   themePkg = pkgs.callPackage ../../packages/og-xbox-plymouth {
     srcVideo = videoPath;
   };
@@ -18,7 +16,6 @@ in
 
   # Silent phase after the boot entry is chosen (menu itself stays visible).
   boot.consoleLogLevel = 0;
-  boot.initrd.verbose = false;
   boot.kernelParams = [
     "quiet"
     "splash"

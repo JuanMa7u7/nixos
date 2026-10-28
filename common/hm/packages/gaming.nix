@@ -4,7 +4,6 @@ let
     gamemode
     mangohud
     lutris
-    sidequest
     android-tools
     protonup-ng
     gamescope

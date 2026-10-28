@@ -83,11 +83,11 @@ in
       # --- Host Specific Configuration ---
 
       ${lib.optionalString isThinkpad ''
-      alias mamalona='ssh juan_ma7u7@mamalona'
+      alias mamalona='ssh ${config.home.username}@mamalona'
       ''}
 
       ${lib.optionalString isMamalona ''
-      alias thinkpad='ssh juan_ma7u7@thinkpad-l15'
+      alias thinkpad='ssh ${config.home.username}@thinkpad-l15'
       ''}
     '';
   };

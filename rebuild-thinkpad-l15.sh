@@ -7,8 +7,8 @@ if [ "$1" != "-s" ]; then
     sudo find ~/ -name "*.nixbak" -type f -delete
 fi
 
-# --impure: allows the gitignored local assets/boot.webm (og-xbox
-# Plymouth theme, not committed to this public repo) via absolute path.
-sudo nixos-rebuild switch --flake .#thinkpad-l15 --impure
+# The tracked assets/boot.webm is referenced relative to the flake root.
+# It is Microsoft IP and retained here for local personal use.
+sudo nixos-rebuild switch --flake .#thinkpad-l15
 
 ./common-rebuild-commands.sh "Thinkpad-L15"

@@ -1,4 +1,4 @@
-{ inputs, hostName, pkgs, lib, withHomeManager ? true, ... }:
+{ inputs, hostName, userName, pkgs, lib, withHomeManager ? true, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
   pkgsEdge = import inputs.nixpkgs {
@@ -37,12 +37,12 @@ in
     '';
 
     extraSpecialArgs = {
-      inherit hostName inputs;
+      inherit hostName inputs userName;
       pkgs-edge = pkgsEdge;
       pkgs-locked = pkgs;
     };
 
-    users."juan_ma7u7" = {
+    users.${userName} = {
       imports = [
         ./hm
         ../hosts/${hostName}/home.nix

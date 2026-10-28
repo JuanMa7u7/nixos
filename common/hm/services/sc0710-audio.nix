@@ -52,7 +52,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.bash}/bin/bash /home/juan_ma7u7/.local/bin/sc0710-audio-link";
+        ExecStart = "${pkgs.bash}/bin/bash ${config.home.homeDirectory}/.local/bin/sc0710-audio-link";
         RemainAfterExit = true;
       };
       Install = {
@@ -63,7 +63,7 @@ in
     xdg.desktopEntries.sc0710-audio = {
       name = "sc0710 Audio Link";
       comment = "Link sc0710 capture card audio to EasyEffects";
-      exec = "${pkgs.bash}/bin/bash /home/juan_ma7u7/.local/bin/sc0710-audio-link";
+      exec = "${pkgs.bash}/bin/bash ${config.home.homeDirectory}/.local/bin/sc0710-audio-link";
       icon = "audio-card";
       terminal = true;
       categories = [ "Audio" "AudioVideo" ];

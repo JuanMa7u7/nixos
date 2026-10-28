@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
 
   # tmux-which-key = pkgs.tmuxPlugins.mkTmuxPlugin
@@ -23,8 +23,8 @@ let
       sha256 = "sha256-cPZCV8xk9QpU49/7H8iGhQYK6JwWjviL29eWabuqruc=";
     };
   };
-  usr = "juan_ma7u7";
-  resurrectDirPath = "/home/${usr}/.tmux/resurrect";
+  usr = config.home.username;
+  resurrectDirPath = "${config.home.homeDirectory}/.tmux/resurrect";
 in {
   programs.tmux = {
     enable = true;

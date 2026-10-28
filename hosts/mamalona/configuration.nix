@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, userName, ... }:
 {
   imports = [ ./system.nix ./vfio.nix ./virt.nix ];
 
@@ -158,7 +158,7 @@
 
   security.sudo.extraRules = [
     {
-      users = [ "juan_ma7u7" ];
+      users = [ userName ];
       commands = [
         {
           command = "/run/current-system/sw/bin/systemctl reboot";

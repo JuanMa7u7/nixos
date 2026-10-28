@@ -1,4 +1,4 @@
-{ ... }:
+{ userName, ... }:
 {
   fileSystems."/mnt/datos" = {
     device = "/dev/disk/by-uuid/968E1A158E19EE8D";
@@ -13,9 +13,9 @@
   };
 
   systemd.tmpfiles.rules = [
-    "z /mnt/juegos-ssd 0755 juan_ma7u7 users - -"
-    "z /mnt/juegos-hdd 0755 juan_ma7u7 users - -"
-    "Z /mnt/juegos-hdd/SteamLibrary 0755 juan_ma7u7 users - -"
-    "Z /mnt/juegos-ssd/SteamLibrary 0755 juan_ma7u7 users - -"
+    "z /mnt/juegos-ssd 0755 ${userName} users - -"
+    "z /mnt/juegos-hdd 0755 ${userName} users - -"
+    "Z /mnt/juegos-hdd/SteamLibrary 0755 ${userName} users - -"
+    "Z /mnt/juegos-ssd/SteamLibrary 0755 ${userName} users - -"
   ];
 }

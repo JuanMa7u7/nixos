@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, userName, ... }:
 {
   imports = [
     ./openrgb.nix
@@ -62,7 +62,7 @@
     PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines_6}/bin/schema-engine";
   };
 
-  users.users."juan_ma7u7" = {
+  users.users.${userName} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "docker" "games" ];
     shell = pkgs.zsh;
@@ -70,7 +70,6 @@
 
   services.flatpak.enable = true;
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
 
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   security.polkit.enable = true;
