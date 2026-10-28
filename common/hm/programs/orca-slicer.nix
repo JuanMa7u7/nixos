@@ -21,6 +21,7 @@ let
 
     extraPkgs = pkgs: with pkgs; [
       gtk3
+      glib-networking
       libsecret
       vulkan-loader
       webkitgtk_4_1
@@ -50,7 +51,8 @@ let
     export GDK_BACKEND=x11
     export WEBKIT_DISABLE_DMABUF_RENDERER=1
     export WEBKIT_DISABLE_COMPOSITING_MODE=1
-    export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+    export GIO_EXTRA_MODULES=${pkgs.glib-networking}/lib/gio/modules
+    export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
     export LC_ALL=C
     exec ${orcaSlicerAppImage}/bin/${pname} "$@"
   '';
@@ -66,7 +68,7 @@ in
     genericName = "3D Printing Software";
     comment = "G-code generator for 3D printers";
     exec = "${orcaSlicerLauncher}/bin/${pname} %U";
-    icon = pname;
+    icon = "${orcaSlicerAppImage}/share/pixmaps/${pname}.png";
     terminal = false;
     type = "Application";
     categories = [ "Graphics" ];
