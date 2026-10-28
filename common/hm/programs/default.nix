@@ -24,6 +24,7 @@
     ./xodus-nexus.nix
     ./comfyui.nix
     ./locally-uncensored.nix
+    ./orca-slicer.nix
     ./motrix.nix
     ./pinokio.nix
     ./piik.nix
