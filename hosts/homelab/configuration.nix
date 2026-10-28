@@ -1,25 +1,13 @@
 { config, lib, pkgs, ... }:
 {
-  # HP Pavilion dm1 (AMD E-350) boots via legacy BIOS -> GRUB on /dev/sda.
-  # The whole headless server stack (server-base, networking, containers)
-  # comes from common/server, imported via mkHost in flake.nix.
-  #
-  # MIGRATION: if this firmware turns out to be UEFI, or once you move to a
-  # ThinkCentre/EliteDesk mini PC, replace this block with the removable-EFI
-  # recipe used by thinkpad-l15:
-  #   boot.loader.grub = {
-  #     enable = true;
-  #     devices = [ "nodev" ];
-  #     efiSupport = true;
-  #     efiInstallAsRemovable = true;
-  #   };
+  # Paused, i need to buy the hardware first, and then i will continue with the configuration
+  # The hardware would be an Lenovo ThinkCentre M920q Tiny Desktop or similar, which is a small form factor PC that can be used as a home server.
+
   boot.loader.grub = {
     enable = true;
     device = "/dev/sda";
   };
 
-  # 6GB RAM on very slow Bobcat cores: compress half of RAM and kill memory
-  # hogs early (same pattern as hosts/thinkpad-l15/configuration.nix).
   zramSwap = {
     enable = true;
     memoryPercent = 50;
