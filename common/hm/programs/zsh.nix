@@ -16,7 +16,7 @@ in
     initContent = ''
       # end-4/matugen manages dynamic theming; no shell color hooks needed.
       # NOTE: the old Caelestia-era starship-dynamic.toml override was removed:
-      # STARSHIP_CONFIG now falls through to ~/.config/starship.toml (repo config).
+      # STARSHIP_CONFIG now falls through to ~/.config/starship.toml (Illogical Impulse config).
 
       # Helpful aliases
       alias c='clear' # clear terminal

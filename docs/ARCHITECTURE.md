@@ -91,6 +91,8 @@ Editing deployed `~/.config/hypr` files is not durable: activation replaces the 
 
 Kitty is configured through `common/hm/programs/kitty.nix`. Its `include` points to quickshell's generated `kitty-theme.conf`; the theme file is generated at runtime. Illogical Impulse's activation can wipe the Kitty directory, so `restoreHmManagedConfigs` reapplies the Home Manager-generated file afterward.
 
+Starship's program and prompt configuration are owned by Illogical Impulse through `programs.illogical-impulse.dotfiles.starship`; there is no separate repository Starship module.
+
 Other desktop integrations include system-level Hyprland portals and greetd, shared PipeWire/WirePlumber, the host-specific `mamalona` NVIDIA/VFIO configuration, and Home Manager services in `common/hm/services/` (BluCast, sc0710 audio, keyring). Changes to any of these should be reviewed alongside related desktop behavior.
 
 The keyring setup is split across `common/system/keyring.nix` and `common/hm/services/keyring.nix`. The HM user service creates an empty, passwordless default collection only when no collection exists; an existing collection, including a locked one, is left untouched. This addresses the current greetd/PAM session behavior for applications using Secret Service.
@@ -113,7 +115,7 @@ Nix expressions for individual applications live in `common/hm/programs/`. Activ
 
 For an update, verify the upstream release and CPU architecture; change the URL/version and fixed hash together; preserve required runtime libraries, wrappers, icons, desktop metadata, and launch flags; then build the specific derivation to validate it. The build fetches the artifact but does not activate the OS. Do not weaken a hash or run an untrusted downloaded binary.
 
-`pass.nix` and `starship.nix` are intentionally commented out in `common/hm/programs/default.nix`; keep their source files and comments unless asked to change those modules. Pen is enabled through `pencil.nix` and pins a versioned official GitHub release asset with a fixed SHA-256. When updating it, keep the version, release URL, and hash aligned; do not remove integrity validation. Xodus Gaming's separate CLI module and source input have been removed; Xodus Nexus remains a distinct active module.
+`pass.nix` is intentionally commented out in `common/hm/programs/default.nix`; keep its source file and comment unless asked to change that module. Pen is enabled through `pencil.nix` and pins a versioned official GitHub release asset with a fixed SHA-256. When updating it, keep the version, release URL, and hash aligned; do not remove integrity validation. Xodus Gaming's separate CLI module and source input have been removed; Xodus Nexus remains a distinct active module.
 
 Custom derivations live in `packages/`: `owly` and `piik` are binary archive packages with wrapper/runtime setup; `og-xbox-plymouth` extracts frames/audio from the local video input. Other application modules use archives, custom FHS environments, Wine, or non-flake sources; inspect the individual expression rather than assuming all applications follow the AppImage pattern.
 

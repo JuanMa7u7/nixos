@@ -9,7 +9,6 @@
     ./zsh.nix
     ./kitty.nix
     ./foot.nix
-    # ./starship.nix # DISABLED: end-4 owns the prompt (illogical-flake dots/.config/starship.toml)
     ./responsively.nix
     ./duckstation.nix
     ./shadps4.nix
