@@ -3,7 +3,6 @@
   imports = [
     ./git.nix
     ./tmux.nix
-    # ./pass.nix
     ./direnv.nix
     ./vscode.nix
     ./zsh.nix
