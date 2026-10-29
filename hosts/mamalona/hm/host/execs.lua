@@ -17,4 +17,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("ktailctl")
     -- Steam, silent (programs.steam; mamalona-only)
     hl.exec_cmd("sleep 5 && steam -silent")
+    -- Start Instant Replay with this Hyprland session.
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY && systemctl --user restart gpu-screen-recorder-replay.service")
 end)

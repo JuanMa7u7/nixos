@@ -12,6 +12,7 @@ See [Architecture](docs/ARCHITECTURE.md) for the module graph and host-specific 
 - Illogical Impulse / Hyprland customization with shared and per-host Lua fragments.
 - Kitty settings managed through Home Manager, including a generated quickshell theme include.
 - Host-specific rebuild scripts, ThinkPad monitor helpers, and `mamalona` Windows VM tooling.
+- Mamalona native-Linux Instant Replay via GPU Screen Recorder (`SUPER + ALT + F10` saves the last minute).
 - A homelab-only server stack declaring AdGuard Home and Vaultwarden OCI containers.
 
 ## Supported machines
@@ -91,6 +92,7 @@ Run desktop rebuild scripts from the repository root and verify the target host 
 | `./hosts/mamalona/vm/win11-vm1-singlegpu/play-xbox.sh` | `mamalona` | Stops desktop/audio processes, unbinds NVIDIA, loads VFIO, starts Windows VM | Uses multiple `sudo` commands | High-impact hardware/session operation; never use for validation. |
 | `./hosts/mamalona/vm/win11-vm1-singlegpu/scripts/attach-multimedia.sh` | `mamalona` VM | Attaches USB devices to the Windows VM via `virsh` | Script does not call `sudo` | Requires libvirt access and changes VM device state. |
 | `common/hm/scripts/record.sh` | Desktop user session | Recording helper deployed over the upstream Illogical Impulse script | User session | Handles recording flags and writes video files; deployed through Home Manager activation. |
+| `hosts/mamalona/hm/default.nix` GPU Screen Recorder service | `mamalona` normal Hyprland session | Maintains a 60-second replay buffer with desktop audio | User session | `SUPER + ALT + F10` saves a clip to `~/Videos/Clips`; first use may prompt for Wayland screen-capture permission. Does not run in the Windows VFIO profile. |
 
 Both rebuild scripts require the repository root as the working directory, have fixed host targets, and do not verify the current hostname or change directories. They lack fail-fast handling, so inspect the `nixos-rebuild` output and do not rely on the final script status alone. There is no homelab rebuild script.
 
