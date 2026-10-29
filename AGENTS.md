@@ -59,7 +59,7 @@ Substantial behavior changes should follow the repository's spec-driven workflow
 - Preserve runtime libraries (`extraPkgs`, `runtimeLibs`, or FHS inputs), launcher environment variables, executable names, desktop entries, icons, and MIME associations that the existing application requires.
 - Update the version/URL and hash together. Validate with a Nix build of the specific package after reviewing the upstream release source; builds may download artifacts and consume disk/network resources.
 - Do not routinely download and execute artifacts manually. Do not replace a Nix package with an AppImage or the reverse without an explicit requirement.
-- Some modules are intentionally commented out in `common/hm/programs/default.nix` (`pass`, `starship`, `curseforge`, `pencil`). Keep those files and disablement comments unless the user requests their removal or re-enablement.
+- Some modules are intentionally commented out in `common/hm/programs/default.nix` (`pass`, `starship`, `pencil`). Keep those files and disablement comments unless the user requests their removal or re-enablement.
 - `packages/` contains non-AppImage local derivations too; check its existing patterns before adding a new one.
 
 ## Hyprland, Kitty, and desktop configuration
