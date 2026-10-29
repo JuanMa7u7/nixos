@@ -1,4 +1,4 @@
-{ pkgs, pkgs-edge, lib, ... }:
+{ pkgs, pkgs-edge, ... }:
 let
   stablePkgs = with pkgs; [
     git-lfs
@@ -14,7 +14,6 @@ let
     bat
     btop
     curl
-    anydesk
     fd
     ripgrep
     lsof
@@ -67,7 +66,6 @@ let
     prisma-engines
     turbo
     tmux
-    vscode
     flutter
     direnv
     tabularis

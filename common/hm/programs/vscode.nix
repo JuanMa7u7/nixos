@@ -20,6 +20,10 @@ let
 {
   programs.vscode = {
     enable = true;
+    # Work around Electron on Linux resolving system-ui to an incorrect font.
+    package = pkgs.vscode.override {
+      commandLineArgs = "--system-font-family='DejaVu Sans'";
+    };
     # package = insiders.fhs;
   };
 }
