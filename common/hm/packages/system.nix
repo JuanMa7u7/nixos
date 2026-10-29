@@ -14,6 +14,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    file # QuickShell uses this to read downloaded floating-image dimensions.
     gnome-disk-utility
     x11vnc
     ktailctl
