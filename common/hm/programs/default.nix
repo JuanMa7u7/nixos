@@ -15,7 +15,7 @@
     ./shadps4.nix
     ./affinity.nix
     ./anydesk.nix
-    # ./pencil.nix  # TEMPORARILY DISABLED — hash mismatch on AppImage
+    ./pencil.nix
     ./luban.nix
     ./real-video-enhancer.nix
     ./quiver-launcher.nix

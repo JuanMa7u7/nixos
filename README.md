@@ -110,11 +110,11 @@ Add or remove shared desktop packages in the matching category under `common/hm/
 
 `sidequest` is currently omitted from `common/hm/packages/gaming.nix`: the locked Nixpkgs revision marks `sidequest-0.10.42` insecure because it uses EOL Electron 29. No insecure-package exception was added.
 
-Application modules and wrappers live in `common/hm/programs/` and are assembled by `common/hm/programs/default.nix`. Keep the existing commented-out modules (`pass`, `starship`, `pencil`) unless explicitly asked to change them. Custom derivations are under `packages/` and are connected through package modules or NixOS modules.
+Application modules and wrappers live in `common/hm/programs/` and are assembled by `common/hm/programs/default.nix`. The intentionally commented-out modules include `pass` and `starship`. Custom derivations are under `packages/` and are connected through package modules or NixOS modules.
 
 ### AppImages
 
-Most active AppImage expressions in `common/hm/programs/` (for example `orca-slicer.nix` and `duckstation.nix`) declare a version, a source URL, and a fixed hash; then use `pkgs.appimageTools.wrapType2`, any required `extraPkgs`, an optional launcher wrapper, and an `xdg.desktopEntries` declaration. Some install a separately fetched icon or rename the versioned executable. Affinity uses a custom extracted AppImage and Wine/FHS environment; inspect the target expression rather than assuming every application has the same runtime needs.
+Most active AppImage expressions in `common/hm/programs/` (for example `pencil.nix`, `orca-slicer.nix`, and `duckstation.nix`) declare a version, a source URL, and a fixed hash; then use `pkgs.appimageTools.wrapType2`, any required `extraPkgs`, an optional launcher wrapper, and an `xdg.desktopEntries` declaration. Some install a separately fetched icon or rename the versioned executable. Affinity uses a custom extracted AppImage and Wine/FHS environment; inspect the target expression rather than assuming every application has the same runtime needs.
 
 To update one, verify the upstream release, URL, architecture, and hash; change source/version/hash together; preserve the runtime libraries, launcher environment, desktop entry, icon and MIME settings; then build/evaluate the target package to validate it. Nix may download the artifact during the build, but a build does not activate the system. Never remove integrity verification or execute an untrusted binary to diagnose it.
 

@@ -2,11 +2,12 @@
 
 let
   pname = "pencil";
-  version = "1.1.55";
+  version = "1.2.21";
 
+  # Keep the version, release URL, and fixed hash in sync when updating this AppImage.
   src = pkgs.fetchurl {
-    url = "https://www.pencil.dev/download/Pencil-linux-x86_64.AppImage";
-    hash = "sha256-GzLLJyglbf5H5F+Ingxqdq06fD3JFCPLjreX3JJ9AFs=";
+    url = "https://github.com/highagency/pen-desktop-releases/releases/download/v1.2.21/Pen-1.2.21-linux-x86_64.AppImage";
+    hash = "sha256-CdRsvJiafAR+WBsRV/NFlMQt2tN6xnFEnRK1/ZjNY1M=";
   };
 
   appimageContents = pkgs.appimageTools.extractType2 {
@@ -21,12 +22,12 @@ let
         mv "$out/bin/${pname}-${version}" "$out/bin/${pname}"
       fi
 
-      install -Dm644 ${appimageContents}/pencil.png "$out/share/icons/hicolor/512x512/apps/${pname}.png"
+      install -Dm644 ${appimageContents}/pen.png "$out/share/icons/hicolor/512x512/apps/pen.png"
     '';
 
     meta = with lib; {
-      description = "Desktop app for Pencil";
-      homepage = "https://www.pencil.dev/";
+      description = "Desktop app for Pen";
+      homepage = "https://www.pen.dev/";
       sourceProvenance = with sourceTypes; [ binaryNativeCode ];
       platforms = [ "x86_64-linux" ];
       mainProgram = pname;
@@ -37,10 +38,10 @@ in
   home.packages = [ pencil ];
 
   xdg.desktopEntries.pencil = {
-    name = "Pencil";
-    comment = "Desktop app for Pencil";
+    name = "Pen";
+    comment = "Desktop app for Pen";
     exec = "${lib.getExe pencil} --no-sandbox %U";
-    icon = "pencil";
+    icon = "pen";
     terminal = false;
     type = "Application";
     categories = [
@@ -51,7 +52,7 @@ in
     ];
     startupNotify = true;
     settings = {
-      StartupWMClass = "Pencil";
+      StartupWMClass = "Pen";
     };
   };
 }
