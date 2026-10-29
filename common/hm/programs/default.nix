@@ -30,6 +30,5 @@
     ./pinokio.nix
     ./piik.nix
     ./owly.nix
-    # ./xodus.nix
   ];
 }

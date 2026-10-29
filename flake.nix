@@ -23,11 +23,6 @@
     # Elgato 4K60 Pro capture card driver
     sc0710.url = "github:Nakildias/sc0710";
 
-    # Xodus Gaming — Xbox PC game migration to Linux
-    xodus = {
-      url = "github:xodus-gaming/xodus";
-      flake = false;
-    };
   };
 
   outputs = inputs:

@@ -16,7 +16,6 @@ This document maps the current NixOS flake and its host-specific configuration. 
 | `nixos-hardware` | Common CPU/PC/SSD/NVIDIA modules on desktop hosts. |
 | `trinity-launcher` | Minecraft Bedrock launcher in `common/hm/packages/gaming.nix`. |
 | `sc0710` | Elgato capture-card NixOS module on `mamalona`. |
-| `xodus` (non-flake) | Source for `common/hm/programs/xodus.nix`, which is currently commented out. |
 
 The unused `nixarr` and `nix-index-database` inputs were removed after reference checks; `flake.lock` was pruned without updating the remaining input revisions.
 
@@ -114,7 +113,7 @@ Nix expressions for individual applications live in `common/hm/programs/`. Activ
 
 For an update, verify the upstream release and CPU architecture; change the URL/version and fixed hash together; preserve required runtime libraries, wrappers, icons, desktop metadata, and launch flags; then build the specific derivation to validate it. The build fetches the artifact but does not activate the OS. Do not weaken a hash or run an untrusted downloaded binary.
 
-`pencil.nix`, `curseforge.nix`, `xodus.nix`, `pass.nix`, and `starship.nix` are intentionally commented out in `common/hm/programs/default.nix`. Keep their source files and comments unless asked to change those modules. Pencil's comment records a hash mismatch as the reason for temporary disablement.
+`pencil.nix`, `curseforge.nix`, `pass.nix`, and `starship.nix` are intentionally commented out in `common/hm/programs/default.nix`. Keep their source files and comments unless asked to change those modules. Pencil's comment records a hash mismatch as the reason for temporary disablement. Xodus Gaming's separate CLI module and source input have been removed; Xodus Nexus remains a distinct active module.
 
 Custom derivations live in `packages/`: `owly` and `piik` are binary archive packages with wrapper/runtime setup; `og-xbox-plymouth` extracts frames/audio from the local video input. Other application modules use archives, custom FHS environments, Wine, or non-flake sources; inspect the individual expression rather than assuming all applications follow the AppImage pattern.
 

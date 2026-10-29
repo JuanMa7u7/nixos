@@ -110,7 +110,7 @@ Add or remove shared desktop packages in the matching category under `common/hm/
 
 `sidequest` is currently omitted from `common/hm/packages/gaming.nix`: the locked Nixpkgs revision marks `sidequest-0.10.42` insecure because it uses EOL Electron 29. No insecure-package exception was added.
 
-Application modules and wrappers live in `common/hm/programs/` and are assembled by `common/hm/programs/default.nix`. Keep the existing commented-out modules (`pass`, `starship`, `curseforge`, `pencil`, `xodus`) unless explicitly asked to change them. Custom derivations are under `packages/` and are connected through package modules or NixOS modules.
+Application modules and wrappers live in `common/hm/programs/` and are assembled by `common/hm/programs/default.nix`. Keep the existing commented-out modules (`pass`, `starship`, `curseforge`, `pencil`) unless explicitly asked to change them. Custom derivations are under `packages/` and are connected through package modules or NixOS modules.
 
 ### AppImages
 

@@ -297,7 +297,6 @@
         "nixpkgs-patchelf": "nixpkgs-patchelf",
         "sc0710": "sc0710",
         "trinity-launcher": "trinity-launcher",
-        "xodus": "xodus",
         "zen-browser": "zen-browser"
       }
     },
@@ -351,22 +350,6 @@
       "original": {
         "type": "git",
         "url": "https://codeberg.org/javiercplus/Trinity-Launcher-NIXOS"
-      }
-    },
-    "xodus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1792836748,
-        "narHash": "sha256-dQRxXzzFVxvAe0J+EyF4RJQV9Ce9xaffoJxnyL7Qeko=",
-        "owner": "xodus-gaming",
-        "repo": "xodus",
-        "rev": "514dd56f360a4bdf12f4acde5148bac5ce5f957f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xodus-gaming",
-        "repo": "xodus",
-        "type": "github"
       }
     },
     "zen-browser": {
