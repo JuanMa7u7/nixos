@@ -9,6 +9,7 @@ This document maps the current NixOS flake and its host-specific configuration. 
 | Input | Use in this repository |
 |---|---|
 | `nixpkgs` (`nixos-unstable`) | Primary package set and NixOS module library; exact revision is in `flake.lock`. |
+| `nixpkgs-patchelf` (pinned Nixpkgs snapshot) | Supplies build-time `patchelf` 0.15.2 only for AnyDesk; the primary package set remains in use for its runtime dependencies. |
 | `home-manager` | NixOS Home Manager module for the two desktop hosts. |
 | `illogical-flake` | Illogical Impulse desktop/Home Manager modules and copied dotfiles, including Hyprland configuration; it also pins a nested QuickShell input. |
 | `zen-browser` | Zen Browser package in `common/hm/packages/browsers.nix`. |
@@ -102,6 +103,8 @@ The keyring setup is split across `common/system/keyring.nix` and `common/hm/ser
 `common/hm/packages/default.nix` imports category files such as `applications.nix`, `browsers.nix`, `gaming.nix`, `media.nix`, and `wayland.nix`. These are shared by desktop Home Manager users, not by `homelab`. Host-only system packages belong in the appropriate host module; host-only HM packages belong in that host's `home.nix` or HM module.
 
 Some package modules use `pkgs`, `pkgs-edge`, and `pkgs-locked`. The aliases are separately passed by `common/default.nix`; they do not imply that `pkgs-edge` follows an independent flake input. Check the actual import before changing a package source.
+
+AnyDesk is managed by `common/hm/programs/anydesk.nix`. It pins the official 8.1.0 `amd64.tar.gz` source and fixed hash, while reusing the Nixpkgs AnyDesk derivation for dependencies, wrappers, icons, and desktop integration. Its `postFixup` uses `patchelf` 0.15.2 from the pinned `nixpkgs-patchelf` input. In testing, Nixpkgs' `patchelf` 0.19.2 produced an AnyDesk executable that segfaulted in glibc's dynamic loader, while 0.15.2 patched the same source successfully. This compatibility pin is build-time-only and should be removed once the primary package/toolchain no longer reproduces the loader crash.
 
 `sidequest` is currently not installed through `common/hm/packages/gaming.nix`: the locked Nixpkgs revision marks version `0.10.42` insecure due to its EOL Electron 29 runtime. The configuration does not permit that package as an insecure exception.
 

@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # AnyDesk 8.1.0 needs patchelf 0.15.2; newer patchelf breaks its ELF loader.
+    nixpkgs-patchelf.url = "github:NixOS/nixpkgs/c59305bab2065cfecc4944690d9eedbb56f3a9fa";
+
     home-manager.url = "github:nix-community/home-manager";
 
     illogical-flake = {
