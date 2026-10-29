@@ -57,6 +57,21 @@
       $DRY_RUN_CMD chmod u+w "$HOME/.config/quickshell/ii/scripts/videos/record.sh"
     '';
 
+  # GPU telemetry helper + QuickShell service. The upstream copy owns the
+  # Quickshell tree, so deploy these sources afterward and add the compact
+  # resource indicator to both bar layouts and the resource popup.
+  home.activation.addGpuUsageIndicator =
+    lib.hm.dag.entryAfter [ "copyIllogicalImpulseConfigs" ] ''
+      $DRY_RUN_CMD mkdir -p "$HOME/.config/quickshell/ii/scripts" "$HOME/.config/quickshell/ii/services"
+      $DRY_RUN_CMD cp -f ${./scripts/gpu-usage.sh} "$HOME/.config/quickshell/ii/scripts/gpu-usage.sh"
+      $DRY_RUN_CMD cp -f ${./quickshell/GpuUsage.qml} "$HOME/.config/quickshell/ii/services/GpuUsage.qml"
+      $DRY_RUN_CMD chmod u+w "$HOME/.config/quickshell/ii/scripts/gpu-usage.sh" "$HOME/.config/quickshell/ii/services/GpuUsage.qml"
+      $DRY_RUN_CMD ${pkgs.python3}/bin/python3 ${./scripts/patch-gpu-indicator.py} \
+        "$HOME/.config/quickshell/ii/modules/ii/bar/Resources.qml" \
+        "$HOME/.config/quickshell/ii/modules/ii/verticalBar/Resources.qml" \
+        "$HOME/.config/quickshell/ii/modules/ii/bar/ResourcesPopup.qml"
+    '';
+
   # Shared app-variables override (terminal = kitty). end-4's keybinds load
   # custom/variables.lua after their own defaults, so this wins cleanly.
   # Deployed with cp (full ownership: the end-4 default file is empty).

@@ -84,6 +84,7 @@ The NixOS `programs.hyprland` module enables the portal service and contributes 
 Hyprland's main configuration is not a `home.file` tree in this repo. The `illogical-flake` Home Manager module copies its own `dots/.config/hypr` during the `copyIllogicalImpulseConfigs` activation step. Repository customizations are sources:
 
 - Shared: `common/hm/variables.lua`, `common/hm/appearance.lua`, and `common/hm/scripts/record.sh`.
+- Shared QuickShell override: `common/hm/quickshell/GpuUsage.qml` and `common/hm/scripts/gpu-usage.sh` are deployed after the upstream copy by `common/hm/illogical.nix`; the activation hook adds the indicator to both resource-bar layouts and CPU/GPU telemetry to the resource popup. NVIDIA values come from `nvidia-smi`; AMD GPU values come from DRM sysfs; unsupported individual sensors display as unavailable.
 - Per host: `hosts/<host>/hm/host/monitors.lua`, `keybinds.lua`, and `execs.lua`.
 - Ordering/deployment: `common/hm/illogical.nix` and `hosts/<host>/hm/host.nix` run activation hooks after the upstream copy. General/keybind fragments are appended; host `execs.lua` is copied as a complete file.
 
