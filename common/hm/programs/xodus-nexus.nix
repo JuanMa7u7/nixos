@@ -2,11 +2,11 @@
 
 let
   pname = "xodus-nexus";
-  version = "0.3.9";
+  version = "0.4.1";
 
   src = pkgs.fetchurl {
     url = "https://github.com/domsvoboda/xodus-nexus/releases/download/v${version}/Xodus-Nexus-${version}-x86_64.AppImage";
-    hash = "sha256:f6751b39b8f6bb29e01c26483bb76e9ed0546f91a489ee7f3087b8b8723c5b45";
+    hash = "sha256:3ba5cce6a3d84bec3d7b2286cf878886f0b8dd3a6aea7635abe376a0237dbd4d";
   };
 
   icon = pkgs.fetchurl {
