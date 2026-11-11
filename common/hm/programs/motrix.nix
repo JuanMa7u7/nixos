@@ -2,16 +2,16 @@
 
 let
   pname = "motrix";
-  version = "2.0.0-beta.52";
+  version = "2.4.1";
 
   src = pkgs.fetchurl {
     url = "https://github.com/agalwood/Motrix/releases/download/v${version}/Motrix-${version}-x86_64.AppImage";
-    hash = "sha256:b5c4ffde5367bc6d63e22da2b6696c4366f3fd37848b30f1b7b91751962be54b";
+    hash = "sha256-dnh0x2SoznosmhXWp6bjY9YqIjK/Qz02pv7bOiR5I7o=";
   };
 
   icon = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/agalwood/Motrix/v${version}/public/app-icon.png";
-    hash = "sha256-BE07ZKFKpRLKQUaTctGtYwVX2q6yy05wnTTy08V9TDs=";
+    hash = "sha256-V04d/AP4chBRE4DCzPkyN0GCdSwLLPQ3Wbr69uKZGRU=";
   };
 
   motrix = pkgs.appimageTools.wrapType2 {
@@ -50,5 +50,14 @@ in
       "FileTransfer"
     ];
     startupNotify = true;
+    mimeType = [
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+      "x-scheme-handler/ftp"
+      "application/x-bittorrent"
+      "x-scheme-handler/magnet"
+      "x-scheme-handler/bc"
+      "x-scheme-handler/thunder"
+    ];
   };
 }
