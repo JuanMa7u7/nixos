@@ -105,4 +105,9 @@
   programs.nix-ld.libraries = with pkgs; [ icu ];
 
   openrgb.enable = true;
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 }

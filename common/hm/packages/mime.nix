@@ -131,6 +131,9 @@
       "application/vnd.ms-3mfdocument" = "com.orcaslicer.OrcaSlicer.desktop";
       "application/3mf" = "com.orcaslicer.OrcaSlicer.desktop";
       "application/x-3mf" = "com.orcaslicer.OrcaSlicer.desktop";
+
+      "application/x-appimage" = "appimage-run.desktop";
+      "application/vnd.appimage" = "appimage-run.desktop";
     };
   };
 }

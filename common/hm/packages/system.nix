@@ -18,6 +18,7 @@ in
     gnome-disk-utility
     x11vnc
     ktailctl
+    appimage-run
   ] ++ [
     (lib.hiPrio gpartedWrapper)
   ];
