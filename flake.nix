@@ -9,11 +9,30 @@
 
     home-manager.url = "github:nix-community/home-manager";
 
-    illogical-flake = {
-      url = "github:soymou/illogical-flake?submodules=1";
+    
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dotfiles = {
+      url = "git+https://github.com/end-4/dots-hyprland?submodules=1";
+      flake = false;
+    };
+
+    illogical-flake = {
+      url = "git+https://github.com/soymou/illogical-flake?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+      inputs.nur.follows = "nur";
+      inputs.dotfiles.follows = "dotfiles";
+    };
+    
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -45,21 +64,21 @@
         lib.nixosSystem {
           inherit system;
 
-           pkgs = import inputs.nixpkgs {
-             inherit system;
-             config = {
-               allowUnfree = true;
-                permittedInsecurePackages = [ "nodejs-22.12.0" "nodejs-slim-22.12.0" ];
-             };
-              overlays = [ ];
-           };
-
           specialArgs = {
             inherit hostName inputs withHomeManager userName;
           };
 
           modules =
             [
+              {
+                nixpkgs.config = {
+                  allowUnfree = true;
+                  permittedInsecurePackages = [
+                    "nodejs-22.12.0"
+                    "nodejs-slim-22.12.0"
+                  ];
+                };
+              }
               ./common/default.nix
               ./hosts/${hostName}/hardware-configuration.nix
               ./hosts/${hostName}/configuration.nix

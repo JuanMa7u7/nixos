@@ -1,7 +1,38 @@
+
 { inputs, ... }:
+
+let
+  system = "x86_64-linux";
+
+  pkgsForPatch = import inputs.nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
+
+  illogicalPatched = pkgsForPatch.applyPatches {
+    name = "illogical-flake-patched";
+    src = inputs.illogical-flake.outPath;
+
+    patches = [
+      ../../patches/illogical-flake-fix.patch
+    ];
+  };
+
+  illogicalInputs = {
+    inherit (inputs) quickshell nur dotfiles;
+  };
+
+  illogicalModule =
+    { config, lib, pkgs, ... }:
+    (import "${illogicalPatched}/home-module.nix") {
+      inherit config lib pkgs;
+      inputs = illogicalInputs;
+    };
+
+in
 {
   imports = [
-    inputs.illogical-flake.homeManagerModules.default
+    illogicalModule
     ./illogical.nix
     ./programs
     ./packages
@@ -9,9 +40,6 @@
     ./services
   ];
 
-  # Generates ~/.config/user-dirs.dirs so `xdg-user-dir PICTURES` resolves to
-  # ~/Pictures instead of $HOME (no user-dirs.dirs => fallback to $HOME).
-  # end-4's CTRL+Print bind saves to $(xdg-user-dir PICTURES)/Screenshots.
   xdg.userDirs = {
     enable = true;
     createDirectories = true;

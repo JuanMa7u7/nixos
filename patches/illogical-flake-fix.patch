@@ -1,0 +1,10 @@
+diff --git a/home-modules/packages.nix b/home-modules/packages.nix
+--- a/home-modules/packages.nix
++++ b/home-modules/packages.nix
+@@ -15 +14,0 @@
+-    ps."kde-material-you-colors"
+@@ -43,2 +42,3 @@
+     home.packages = with pkgs; [
+       # Core utilities
++      kde-material-you-colors
+       cava
