@@ -18,6 +18,11 @@ in
       # NOTE: the old Caelestia-era starship-dynamic.toml override was removed:
       # STARSHIP_CONFIG now falls through to ~/.config/starship.toml (Illogical Impulse config).
 
+      # Load secrets if they exist
+      if [[ -r "$HOME/.config/secrets/github.env" ]]; then
+        source "$HOME/.config/secrets/github.env"
+      fi
+
       # Helpful aliases
       alias c='clear' # clear terminal
       alias l='eza -lh --icons=auto' # long list
