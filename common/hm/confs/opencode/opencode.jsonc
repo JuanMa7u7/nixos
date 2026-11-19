@@ -1,77 +1,320 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode-go/gpt-6-luna",
-  "plugin": [
+  // OpenCode Go: use the economical model for routine work.
+  // Verify model IDs with /models before relying on them.
+  "model": "opencode-go/mimo-v2.6-flash",
+  "default_agent": "build",
+  "plugins": [
     "@mohak34/opencode-notifier@latest",
     "@plannotator/opencode@latest",
     "opencode-openai-codex-auth",
     "opencode-antigravity-auth@beta"
   ],
   "mcp": {
-    "context7": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "@upstash/context7-mcp"
-      ],
-      "enabled": true
+    "timeout": {
+      "startup": 45000,
+      "catalog": 30000,
+      "execution": 120000
     },
-    "playwright": {
-      "type": "local",
-      "command": [
-        "docker",
-        "run",
-        "-i",
-        "--rm",
-        "--init",
-        "mcr.microsoft.com/playwright/mcp"
-      ],
-      "enabled": true
-    },
-    "freehire": {
-      "type": "remote",
-      "url": "https://freehire.me/api/v1/mcp"
+    "servers": {
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "enabled": true
+      },
+      "playwright": {
+        "type": "local",
+        "command": [
+          "docker",
+          "run",
+          "-i",
+          "--rm",
+          "--init",
+          "mcr.microsoft.com/playwright/mcp"
+        ],
+        "enabled": true
+      },
+      "github": {
+        "type": "local",
+        "command": [
+          "docker",
+          "run",
+          "-i",
+          "--rm",
+          "-e",
+          "GITHUB_PERSONAL_ACCESS_TOKEN",
+          "-e",
+          "GITHUB_TOOLSETS",
+          "ghcr.io/github/github-mcp-server"
+        ],
+        "environment": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_TOKEN}",
+          "GITHUB_TOOLSETS": "context,repos,issues,pull_requests"
+        },
+        "timeout": {
+          "startup": 45000,
+          "execution": 120000
+        }
+      },
+      "freehire": {
+        "type": "remote",
+        "url": "https://freehire.me/api/v1/mcp",
+        "enabled": false
+      }
     }
   },
-  "agent": {
-    "plan": {
-      "model": "opencode-go/deepseek-v4-pro",
-      "variant": "max"
-    },
+  "agents": {
+    // Built-in primary agents
     "build": {
-      "model": "opencode-go/gpt-6-luna",
-      "variant": "high"
+      "model": "opencode-go/mimo-v2.6-flash"
+    },
+    "plan": {
+      "model": "opencode-go/deepseek-v4.1-flash"
     },
     "general": {
-      "model": "opencode-go/gpt-6-luna",
-      "variant": "high"
+      "model": "opencode-go/deepseek-v4.1-flash"
     },
     "explore": {
       "model": "opencode-go/mimo-v2.6-flash"
     },
+    // Hidden maintenance agents: cheap model to avoid spending premium quota.
     "title": {
-      "model": "opencode-go/gpt-6-luna",
-      "variant": "none"
+      "model": "opencode-go/mimo-v2.6-flash"
     },
     "summary": {
-      "model": "opencode-go/gpt-6-luna",
-      "variant": "none"
+      "model": "opencode-go/mimo-v2.6-flash"
     },
     "compaction": {
-      "model": "opencode-go/gpt-6-luna",
-      "variant": "low"
+      "model": "opencode-go/mimo-v2.6-flash"
     }
   },
+  // These paths resolve from the OpenCode config directory.
   "instructions": [
-    "./instructions/explorer.md"
+    "~/.config/opencode/instructions/explorer.md"
   ],
-  "permission": {
-    "read": {
-      "~/.config/opencode/get-shit-done/*": "allow"
+  "compaction": {
+    "auto": true,
+    "keep": {
+      "tokens": 10000
     },
-    "external_directory": {
-      "~/.config/opencode/get-shit-done/*": "allow"
+    "buffer": "15%"
+  },
+  // Ask before commands that can alter the host, publish code, or destroy data.
+  // Rules are ordered; the last matching rule wins.
+  "permissions": [
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "ask"
+    },
+    // Common read-only inspection commands
+    {
+      "action": "shell",
+      "resource": "pwd",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git status *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git log *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git branch *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "nix flake metadata *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "nix flake show *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "nix flake check *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "nix eval *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "nix build *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "nixos-rebuild *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "journalctl *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "systemctl status *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "systemctl list-*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "lspci *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "lsusb *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "lsblk *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "nvidia-smi *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "vulkaninfo *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "hyprctl *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "virsh list *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "virsh dominfo *",
+      "effect": "allow"
+    },
+    // Explicitly require approval for high-impact operations.
+    {
+      "action": "shell",
+      "resource": "sudo *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "git push *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "git commit *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "nix-collect-garbage *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "nixos-rebuild switch *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "nixos-rebuild boot *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "systemctl stop *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "systemctl disable *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "virsh destroy *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "virsh undefine *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "rm *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "mkfs *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "dd *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "wipefs *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "parted *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "reboot *",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "shutdown *",
+      "effect": "ask"
+    },
+    // GitHub operations require approval (including writes and remote changes).
+    {
+      "action": "github_*",
+      "resource": "*",
+      "effect": "ask"
+    },
+    // Do not silently access arbitrary paths outside the workspace.
+    {
+      "action": "external_directory",
+      "resource": "*",
+      "effect": "ask"
     }
-  }
+  ]
 }

@@ -24,8 +24,13 @@
     # opencode global config — versioned, deployed as individual files so
     # plugin-managed state (node_modules, secrets, notifier state) stays
     # unmanaged in ~/.config/opencode.
-    ".config/opencode/opencode.jsonc".source = ./opencode/opencode.jsonc;
-    ".config/opencode/AGENTS.md".source = ./opencode/AGENTS.md;
+  ".config/opencode/opencode.jsonc".source = ./opencode/opencode.jsonc;
+  ".config/opencode/AGENTS.md".source = ./opencode/AGENTS.md;
+
+  ".config/opencode/agents".source = ./opencode/agents;
+  ".config/opencode/skills".source = ./opencode/skills;
+  ".config/opencode/commands".source = ./opencode/commands;
+  ".config/opencode/instructions".source = ./opencode/instructions;
   };
 
   home.sessionVariables = {
