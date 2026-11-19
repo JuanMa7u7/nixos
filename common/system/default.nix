@@ -64,7 +64,7 @@
 
   users.users.${userName} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "docker" "games" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "docker" "games" "render"];
     shell = pkgs.zsh;
   };
 
@@ -109,5 +109,17 @@
   programs.appimage = {
     enable = true;
     binfmt = true;
+    package = pkgs.appimage-run.override {
+      extraPkgs = pkgs: with pkgs; [
+        vulkan-loader
+        libglvnd
+        xorg.libX11
+        xorg.libXext
+        xorg.libXrandr
+        xorg.libXcursor
+        xorg.libXi
+        wayland
+      ];
+    };
   };
 }
