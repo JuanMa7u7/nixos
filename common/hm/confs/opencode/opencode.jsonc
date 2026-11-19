@@ -6,9 +6,7 @@
   "default_agent": "build",
   "plugins": [
     "@mohak34/opencode-notifier@latest",
-    "@plannotator/opencode@latest",
-    "opencode-openai-codex-auth",
-    "opencode-antigravity-auth@beta"
+    "@plannotator/opencode@latest"
   ],
   "mcp": {
     "timeout": {
@@ -56,11 +54,11 @@
           "execution": 120000
         }
       },
-      "freehire": {
-        "type": "remote",
-        "url": "https://freehire.me/api/v1/mcp",
-        "enabled": false
-      }
+      // "freehire": {
+      //   "type": "remote",
+      //   "url": "https://freehire.me/api/v1/mcp",
+      //   "enabled": false
+      // }
     }
   },
   "agents": {
