@@ -6,7 +6,7 @@ let
 
   src = pkgs.fetchurl {
     url = "https://download.anydesk.com/linux/anydesk-${version}-amd64.tar.gz";
-    hash = "sha256-ImFfGsiqT5qy+nNE44NYvGIp5+C5c7e3+6BISDNgENs=";
+    hash = "sha256-zS5P2eyTHZY7cBW8mQ2Q6M0lXcx9VZZTtpG3Bb6u7IQ=";
   };
 
   pkgsPatchelf = import inputs.nixpkgs-patchelf {
