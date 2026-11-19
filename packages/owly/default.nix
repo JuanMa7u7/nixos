@@ -9,11 +9,11 @@
 
 let
   pname = "owly";
-  version = "0.4.0";
+  version = "0.4.3";
 
   src = fetchurl {
     url = "https://github.com/t4t5/owly/releases/download/v${version}/omdrop-owl-${version}-x86_64.tar.gz";
-    hash = "sha256:229617d237c207c7d70ec49dd76caf34859c07960beafecfc585f71d07f6cc59";
+    hash = "sha256:5a26a0ef5b59c27d34215c61426e8222f33b514b906063dfe175b8ce2c83aebc";
   };
 in
 stdenv.mkDerivation {
