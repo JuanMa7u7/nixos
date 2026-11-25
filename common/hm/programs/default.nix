@@ -27,5 +27,6 @@
     ./pinokio.nix
     ./piik.nix
     ./owly.nix
+    ./zapfast.nix
   ];
 }
